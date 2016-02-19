@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mariadb.jdbc.Driver"/>
+		<property name="url" value="jdbc:mariadb://localhost:3306/playto?characterEncoding=utf8"/>
+<!-- 		<property name="url" value="jdbc:mysql://150.100.1.239:3306/wbsvindi?characterEncoding=utf8"/> -->
+		<property name="username" value="playto"/>
+		<property name="password" value="playto"/>
+		<property name="initialSize" value="5"/>
+		<property name="maxActive" value="200"/>
+		<property name="minIdle" value="5"/>
+		<property name="maxWait" value="3000"/>
+		<property name="poolPreparedStatements" value="true"/>
+		<property name="maxOpenPreparedStatements" value="50"/>
+
+		<!-- 특정 시간마다 validationQuery를 실행 셋팅 시작 -->
+		<property name="validationQuery" value="select 1"/>
+		<property name="testWhileIdle" value="true"/>
+		<property name="timeBetweenEvictionRunsMillis" value="1800000"/>
+		<!-- 특정 시간마다 validationQuery를 실행 셋팅 끝 -->
+	</bean>
+	
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+        <constructor-arg ref="dataSourceSpied" />
+        <property name="logFormatter">
+            <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+                <property name="loggingType" value="MULTI_LINE" />
+                <property name="sqlPrefix" value="SQL         :  "/>
+            </bean>
+        </property>
+    </bean>
+
+	<!-- SqlSessionFactory설정 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="mapperLocations" value="classpath*:org/kbs/playto/books/dao/*.xml" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="WEB-INF/spring/mybatis-config.xml" />
+	</bean>
+
+	<!-- SqlSessionTemplate설정 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
+</beans>

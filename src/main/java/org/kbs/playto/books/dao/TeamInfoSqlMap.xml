@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TeamInfo">
+
+    <select id="selectTeamInfo" parameterType="valueObject" resultType="valueObject">
+        select * from TEAM_INFO WHERE SEQ = #{team_seq}
+    </select>
+
+    <select id="selectTeamInfoList" parameterType="valueObject" resultType="valueObject">
+        select * from TEAM_INFO
+    </select>
+
+    <delete id="deleteTeamInfo" parameterType="valueObject">
+        DELETE FROM TEAM_INFO WHERE SEQ = #{team_seq}
+    </delete>
+
+    <insert id="insertTeamInfo" parameterType="valueObject" >
+        INSERT INTO TEAM_INFO
+    	(
+ 			SEQ,
+			NAME,
+			SCHOOL_NAME,
+			SCORE,
+			CHANCE_1,
+            CHANCE_2,
+            CHANCE_3,
+            CHANCE_4,
+            CHANCE_5,
+            CHANCE_6
+			)
+    	VALUES
+         (
+ 			  #{team_name}
+ 			, #{team_school_name}
+ 			, #{team_score}
+ 			, #{team_chance_1}
+ 			, #{team_chance_2}
+ 			, #{team_chance_3}
+ 			, #{team_chance_4}
+ 			, #{team_chance_5}
+ 			, #{team_chance_6}
+     	)
+    </insert>
+
+    <update id="updateTeamInfo" parameterType="valueObject" >
+        UPDATE TEAM_INFO SET
+			NAME = #{team_name},
+			SCHOOL_NAME = #{team_school_name},
+			SCORE = #{team_score},
+			CHANCE_1 = #{team_chance_1},
+            CHANCE_2 = #{team_chance_2},
+            CHANCE_3 = #{team_chance_3},
+            CHANCE_4 = #{team_chance_4},
+            CHANCE_5 = #{team_chance_5},
+            CHANCE_6 = #{team_chance_6}
+		WHERE SEQ = #{team_seq}
+    </update>
+</mapper>
