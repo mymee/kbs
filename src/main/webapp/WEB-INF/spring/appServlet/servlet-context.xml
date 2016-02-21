@@ -11,12 +11,15 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
+	<context:annotation-config />
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler />
+
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 	
-	<resources mapping="/upload/**" location="/upload/" />
+	<!--<resources mapping="/upload/**" location="/upload/" />-->
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -43,7 +46,8 @@
 	<context:component-scan base-package="org.kbs.playto.books" />
 
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<beans:property name="maxInMemorySize" value="20480"/>
+		<beans:property name="maxUploadSize" value="20971520" />
+		<beans:property name="maxInMemorySize" value="104857600"/>
 		<beans:property name="defaultEncoding" value="UTF-8"/>
 	</beans:bean>
 

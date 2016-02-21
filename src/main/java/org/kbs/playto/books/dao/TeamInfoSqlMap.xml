@@ -4,57 +4,121 @@
 
 <mapper namespace="TeamInfo">
 
+    <select id="selectTeamListQuizProcessInfo" parameterType="valueObject" resultType="valueObject">
+        SELECT * ,
+        (SELECT CHANCE_TYPE FROM QUIZ_CHANCE C WHERE C.AGREE_CHANCE = 1 AND T.SEQ = C.TEAM_SEQ AND C.QUIZ_NUM = P.QUIZ_NUM) AS CHANCE_TYPE,
+        (SELECT CHANCE_TYPE FROM QUIZ_CHANCE C WHERE T.SEQ = C.TEAM_SEQ AND C.QUIZ_NUM = P.QUIZ_NUM+1) AS REQUEST_CHANCE_TYPE,
+        (SELECT SCORE FROM QUIZ_SCORE S WHERE T.SEQ = S.TEAM_SEQ AND S.QUIZ_NUM = P.QUIZ_NUM) AS QUIZ_ANSWER,
+        (SELECT IFNULL(SUM(SCORE),0)  FROM QUIZ_SCORE QS WHERE T.SEQ = QS.TEAM_SEQ GROUP BY TEAM_SEQ) AS ANSWER_SCORE
+        FROM team_info T, (SELECT QUIZ_NUM FROM QUIZ_PROCESS WHERE NUM=1) P
+        <if test="teamSeq != null and teamSeq != ''">
+            <![CDATA[
+            WHERE T.SEQ = #{teamSeq}
+		    ]]>
+        </if>
+    </select>
+
     <select id="selectTeamInfo" parameterType="valueObject" resultType="valueObject">
-        select * from TEAM_INFO WHERE SEQ = #{team_seq}
+        select * from TEAM_INFO WHERE SEQ = #{teamSeq}
     </select>
 
     <select id="selectTeamInfoList" parameterType="valueObject" resultType="valueObject">
         select * from TEAM_INFO
+        <if test="teamSeq != null and teamSeq != ''">
+            <![CDATA[
+            WHERE SEQ = #{teamSeq}
+		    ]]>
+        </if>
+        ORDER BY TEAM_CODE, SCHOOL_NAME, NAME
     </select>
 
     <delete id="deleteTeamInfo" parameterType="valueObject">
-        DELETE FROM TEAM_INFO WHERE SEQ = #{team_seq}
+        DELETE FROM TEAM_INFO WHERE SEQ = #{teamSeq}
     </delete>
 
     <insert id="insertTeamInfo" parameterType="valueObject" >
         INSERT INTO TEAM_INFO
     	(
- 			SEQ,
 			NAME,
 			SCHOOL_NAME,
-			SCORE,
+			BASE_SCORE,
+			RANK_SCORE,
 			CHANCE_1,
             CHANCE_2,
             CHANCE_3,
             CHANCE_4,
             CHANCE_5,
-            CHANCE_6
+            CHANCE_6,
+            TEAM_CODE
 			)
     	VALUES
          (
- 			  #{team_name}
- 			, #{team_school_name}
- 			, #{team_score}
- 			, #{team_chance_1}
- 			, #{team_chance_2}
- 			, #{team_chance_3}
- 			, #{team_chance_4}
- 			, #{team_chance_5}
- 			, #{team_chance_6}
+ 			  #{teamName}
+ 			, #{schoolName}
+ 			, IFNULL(#{teamBaseScore},0)
+ 			, IFNULL(#{teamRankScore},0)
+ 			, IFNULL(#{chance1},0)
+ 			, IFNULL(#{chance2},0)
+ 			, IFNULL(#{chance3},0)
+ 			, IFNULL(#{chance4},0)
+ 			, IFNULL(#{chance5},0)
+ 			, IFNULL(#{chance6},0)
+ 			, #{teamCode}
      	)
     </insert>
 
     <update id="updateTeamInfo" parameterType="valueObject" >
         UPDATE TEAM_INFO SET
-			NAME = #{team_name},
-			SCHOOL_NAME = #{team_school_name},
-			SCORE = #{team_score},
-			CHANCE_1 = #{team_chance_1},
-            CHANCE_2 = #{team_chance_2},
-            CHANCE_3 = #{team_chance_3},
-            CHANCE_4 = #{team_chance_4},
-            CHANCE_5 = #{team_chance_5},
-            CHANCE_6 = #{team_chance_6}
-		WHERE SEQ = #{team_seq}
+			NAME = #{teamName},
+			SCHOOL_NAME = #{schoolName},
+			BASE_SCORE = IFNULL(#{teamBaseScore},0),
+			RANK_SCORE = IFNULL(#{teamRankScore},0),
+			CHANCE_1 = #{chance1},
+            CHANCE_2 = #{chance2},
+            CHANCE_3 = #{chance3},
+            CHANCE_4 = #{chance4},
+            CHANCE_5 = #{chance5},
+            CHANCE_6 = #{chance6},
+            TEAM_CODE = #{teamCode}
+		WHERE SEQ = #{teamSeq}
+    </update>
+    <update id="updateTeamChance" parameterType="valueObject" >
+        UPDATE TEAM_INFO SET
+        <choose>
+            <when test="quizChance == 1">
+                <![CDATA[
+                CHANCE_1 = #{chanceValue}
+                ]]>
+            </when>
+            <when test="quizChance == 2">
+                <![CDATA[
+                CHANCE_2 = #{chanceValue}
+                ]]>
+            </when>
+            <when test="quizChance == 3">
+                <![CDATA[
+                CHANCE_3 = #{chanceValue}
+                ]]>
+            </when>
+            <when test="quizChance == 4">
+                <![CDATA[
+                CHANCE_4 = #{chanceValue}
+                ]]>
+            </when>
+            <when test="quizChance == 5">
+                <![CDATA[
+                CHANCE_5 = #{chanceValue}
+                ]]>
+            </when>
+            <when test="quizChance == 6">
+                <![CDATA[
+                CHANCE_6 = #{chanceValue}
+                ]]>
+            </when>
+            <otherwise>
+                1 = 1
+            </otherwise>
+        </choose>
+        WHERE SEQ = #{teamSeq}
     </update>
 </mapper>

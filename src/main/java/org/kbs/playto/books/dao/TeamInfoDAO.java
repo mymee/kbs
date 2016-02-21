@@ -13,6 +13,13 @@ public class TeamInfoDAO {
     @Autowired
     private SqlSessionTemplate sqlSession;
 
+    public List<ValueObject> selectTeamListQuizProcessInfo(){
+        return sqlSession.selectList("TeamInfo.selectTeamListQuizProcessInfo");
+    }
+    public ValueObject selectTeamQuizProcessInfo(ValueObject paramVo){
+        return sqlSession.selectOne("TeamInfo.selectTeamListQuizProcessInfo", paramVo);
+    }
+
     public ValueObject selectTeamInfo(ValueObject paramVo){
         return sqlSession.selectOne("TeamInfo.selectTeamInfo", paramVo);
     }
@@ -27,6 +34,9 @@ public class TeamInfoDAO {
 
     public int updateTeamInfo(ValueObject paramVo){
         return sqlSession.update("TeamInfo.updateTeamInfo", paramVo);
+    }
+    public int updateTeamChance(ValueObject paramVo){
+        return sqlSession.update("TeamInfo.updateTeamChance", paramVo);
     }
 
     public int deleteTeamInfo(ValueObject paramVo){

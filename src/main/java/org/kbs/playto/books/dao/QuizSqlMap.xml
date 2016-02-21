@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="QuizInfo">
+    <select id="selectQuizScore" parameterType="valueObject" resultType="valueObject">
+        select * from QUIZ_Score WHERE TEAM_SEQ = #{teamSeq} AND QUIZ_NUM = #{quizNum}
+    </select>
+
+    <select id="selectQuizChance" parameterType="valueObject" resultType="valueObject">
+        select * from QUIZ_CHANCE WHERE TEAM_SEQ = #{teamSeq} AND QUIZ_NUM = (SELECT QUIZ_NUM+1 FROM QUIZ_PROCESS WHERE NUM=1)
+    </select>
+
+    <select id="selectQuizProcessNumber" parameterType="valueObject" resultType="valueObject">
+        SELECT I.*,P.QUIZ_NUM,P.QUIZ_END FROM quiz_info I, QUIZ_PROCESS P WHERE I.NUM = P.QUIZ_NUM
+    </select>
+
+    <update id="updateQuizChanceAgree" parameterType="valueObject">
+        UPDATE QUIZ_CHANCE SET AGREE_CHANCE = #{agreeChance} WHERE TEAM_SEQ = #{teamSeq} AND QUIZ_NUM = ${quizNum} AND CHANCE_TYPE = #{quizChance}
+    </update>
+
+    <update id="updateQuizProcessNumber" parameterType="valueObject">
+        UPDATE QUIZ_PROCESS SET QUIZ_NUM =  #{quizNum}, QUIZ_END = #{quizEnd}
+    </update>
+
+    <select id="selectQuizInfo" parameterType="valueObject" resultType="valueObject">
+        select * from QUIZ_INFO WHERE NUM = #{quizNum}
+        <if test="quizAnswer != null and quizAnswer != ''">
+            <![CDATA[
+            AND ANSWER = #{quizAnswer}
+		    ]]>
+        </if>
+    </select>
+
+    <select id="selectQuizInfoProcess" parameterType="valueObject" resultType="valueObject">
+        select * from QUIZ_INFO WHERE PROCESS_YN = 1
+    </select>
+
+    <update id="updateQuizChance" parameterType="valueObject">
+        UPDATE QUIZ_INFO
+        SET
+        <if test="quizChance == 1">
+            <![CDATA[
+            PRIORITY_TEAM_SEQ = #{teamSeq}, PRIORITY_YN = 1
+		    ]]>
+        </if>
+        <if test="quizChance == 4">
+            <![CDATA[
+            DOUBLE_TEAM_SEQ = #{teamSeq}, DOUBLE_YN = 1
+		    ]]>
+        </if>
+        WHERE NUM = #{quizNum}
+    </update>
+
+    <update id="updateQuizStart" parameterType="valueObject">
+        UPDATE QUIZ_INFO SET PROCESS_YN = 1, BEGIN_DT = NOW() WHERE NUM = #{quizNum}
+    </update>
+
+    <update id="updateQuizEnd" parameterType="valueObject">
+        UPDATE QUIZ_INFO SET PROCESS_YN = 0, END_DT = NOW() WHERE NUM = #{quizNum}
+    </update>
+
+    <update id="updateQuizPriority" parameterType="valueObject">
+        UPDATE QUIZ_INFO SET PRIORITY_TEAM_SEQ = #{teamSeq}, PRIORITY_YN = #{priorityYN} WHERE NUM = #{quizNum}
+    </update>
+
+    <update id="updateQuizDouble" parameterType="valueObject">
+        UPDATE QUIZ_INFO SET DOUBLE_TEAM_SEQ = #{teamSeq}, DOUBLE_YN = #{doubleYN} WHERE NUM = #{quizNum}
+    </update>
+
+    <insert id="insertQuizAnswer" parameterType="valueObject">
+        INSERT INTO QUIZ_SCORE
+        (
+          TEAM_SEQ
+          ,QUIZ_NUM
+          ,QUIZ_ANSWER
+          ,SCORE
+          ,CHANCE_1
+          ,CHANCE_2
+          ,CHANCE_3
+          ,CHANCE_4
+          ,CHANCE_5
+          ,CHANCE_6
+          ,QUIZ_DT
+        )
+        VALUES
+        (
+          #{teamSeq}
+          ,#{quizNum}
+          ,#{quizAnswer}
+          ,#{quizAnswerScore}
+          ,#{quizChance1}
+          ,#{quizChance2}
+          ,#{quizChance3}
+          ,#{quizChance4}
+          ,#{quizChance5}
+          ,#{quizChance6}
+          ,now()
+        )
+    </insert>
+
+    <insert id="insertQuizChanceInfo" parameterType="valueObject">
+        INSERT INTO QUIZ_CHANCE
+        (
+          QUIZ_NUM,
+          TEAM_SEQ,
+          CHANCE_TYPE,
+          REG_DT
+        )
+        VALUES
+        (
+          (SELECT QUIZ_NUM+1 FROM QUIZ_PROCESS WHERE NUM = 1)
+          ,#{teamSeq}
+          ,#{quizChance}
+          ,now()
+        )
+    </insert>
+</mapper>

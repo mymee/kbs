@@ -4,17 +4,50 @@
 
 <mapper namespace="KoreanBattle">
 
-    <select id="selectKoreanBattle" parameterType="valueObject" resultType="valueObject">
-        select * from TEAM_INFO WHERE SEQ = #{team_seq}
+    <select id="selectQuiz" parameterType="valueObject" resultType="valueObject">
+        SELECT * FROM KOREAN_BATTLE_QUIZ WHERE PROCESS_YN != 0
     </select>
 
-    <select id="selectKoreanBattleList" parameterType="valueObject" resultType="valueObject">
-        select * from TEAM_INFO
+    <select id="selectKoreanBattleResult" parameterType="valueObject" resultType="valueObject">
+        SELECT * FROM KOREAN_BATTLE_ANSWER WHERE TEAM_CODE = #{teamCode} ORDER BY TEAM_CODE, ANSWER_DT DESC LIMIT 0,1
     </select>
 
-    <delete id="deleteKoreanBattle" parameterType="valueObject">
-        DELETE FROM TEAM_INFO WHERE SEQ = #{team_seq}
-    </delete>
+    <insert id="insertKoreanBattleAnswer" parameterType="valueObject" >
+        INSERT INTO KOREAN_BATTLE_ANSWER
+        (
+        TEAM_CODE,
+        ANSWER_1,
+        ANSWER_2,
+        ANSWER_3,
+        ANSWER_4,
+        ANSWER_5,
+        ANSWER_6,
+        ANSWER_7,
+        ANSWER_8,
+        ANSWER_9,
+        ANSWER_10,
+        ANSWER_FILE,
+        ANSWER_IMAGE,
+        ANSWER_DT
+        )
+        VALUES
+        (
+        #{teamCode}
+        , #{quizAnswer1}
+        , #{quizAnswer2}
+        , #{quizAnswer3}
+        , #{quizAnswer4}
+        , #{quizAnswer5}
+        , #{quizAnswer6}
+        , #{quizAnswer7}
+        , #{quizAnswer8}
+        , #{quizAnswer9}
+        , #{quizAnswer10}
+        , #{fileName}
+        , #{imageData}
+        , now()
+        )
+    </insert>
 
     <insert id="insertKoreanBattle" parameterType="valueObject" >
         INSERT INTO TEAM_INFO
@@ -56,5 +89,12 @@
         CHANCE_5 = #{team_chance_5},
         CHANCE_6 = #{team_chance_6}
         WHERE SEQ = #{team_seq}
+    </update>
+
+
+    <update id="updateKoreanBattleProcess" parameterType="valueObject" >
+        UPDATE KOREAN_BATTLE_QUIZ SET
+        PROCESS_YN = #{quizProcessYN}
+        WHERE NUM = #{quizNum}
     </update>
 </mapper>

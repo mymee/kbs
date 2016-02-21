@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="WorkingMemory">
+
+    <select id="selectWorkingMemoryResult" parameterType="valueObject" resultType="valueObject">
+        SELECT * FROM WORKING_MEMORY WHERE TEAM_CODE = #{teamCode} ORDER BY TEAM_CODE, WORKING_DT DESC LIMIT 0,1
+    </select>
+
+    <insert id="insertWorkingMemory" parameterType="valueObject" >
+        INSERT INTO WORKING_MEMORY
+        (
+        TEAM_CODE,
+        XY_1,
+        XY_2,
+        XY_3,
+        XY_4,
+        XY_5,
+        XY_6,
+        XY_7,
+        XY_8,
+        XY_9,
+        XY_10,
+        XY_11,
+        XY_12,
+        XY_13,
+        XY_14,
+        XY_15,
+        XY_16,
+        XY_17,
+        XY_18,
+        XY_19,
+        XY_20,
+        WORKING_FILE,
+        WORKING_IMAGE,
+        WORKING_DT
+        )
+        VALUES
+        (
+        #{teamCode}
+        , #{xy1}
+        , #{xy2}
+        , #{xy3}
+        , #{xy4}
+        , #{xy5}
+        , #{xy6}
+        , #{xy7}
+        , #{xy8}
+        , #{xy9}
+        , #{xy10}
+        , #{xy11}
+        , #{xy12}
+        , #{xy13}
+        , #{xy14}
+        , #{xy15}
+        , #{xy16}
+        , #{xy17}
+        , #{xy18}
+        , #{xy19}
+        , #{xy20}
+        , #{fileName}
+        , #{imageData}
+        , now()
+        )
+    </insert>
+
+</mapper>

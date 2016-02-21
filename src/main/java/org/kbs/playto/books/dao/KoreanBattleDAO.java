@@ -12,23 +12,35 @@ public class KoreanBattleDAO {
     @Autowired
     private SqlSessionTemplate sqlSession;
 
-    public ValueObject selectKoreanBattle(ValueObject paramVo){
-        return sqlSession.selectOne("TeamInfo.selectTeamInfo", paramVo);
+    public ValueObject selectQuiz(ValueObject paramVo){
+        return sqlSession.selectOne("KoreanBattle.selectQuiz", paramVo);
+    }
+
+    public int updateKoreanBattleProcess(ValueObject paramVo){
+        return sqlSession.update("KoreanBattle.updateKoreanBattleProcess", paramVo);
     }
 
     public List<ValueObject> selectKoreanBattleList(ValueObject paramVo){
-        return sqlSession.selectList("TeamInfo.selectTeamInfoList", paramVo);
+        return sqlSession.selectList("KoreanBattle.selectTeamInfoList", paramVo);
+    }
+
+    public int insertKoreanBattleAnswer(ValueObject paramVo){
+        return sqlSession.insert("KoreanBattle.insertKoreanBattleAnswer", paramVo);
     }
 
     public int insertKoreanBattle(ValueObject paramVo){
-        return sqlSession.insert("TeamInfo.insertKoreanBattle", paramVo);
+        return sqlSession.insert("KoreanBattle.insertKoreanBattle", paramVo);
     }
 
     public int updateKoreanBattle(ValueObject paramVo){
-        return sqlSession.update("TeamInfo.updateKoreanBattle", paramVo);
+        return sqlSession.update("KoreanBattle.updateKoreanBattle", paramVo);
     }
 
     public int deleteKoreanBattle(ValueObject paramVo){
-        return sqlSession.delete("TeamInfo.deleteKoreanBattle", paramVo);
+        return sqlSession.delete("KoreanBattle.deleteKoreanBattle", paramVo);
+    }
+
+    public ValueObject selectKoreanBattleResult(ValueObject paramVo){
+        return sqlSession.selectOne("KoreanBattle.selectKoreanBattleResult", paramVo);
     }
 }
