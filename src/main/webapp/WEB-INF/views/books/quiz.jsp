@@ -41,7 +41,7 @@
     <script src="${pageContext.request.contextPath}/resources/js/html2canvas.svg.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/canvas2image.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery.cookie.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/dalert.jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/dalert-1.1.1/js/dalert.jquery.js"></script>
 
     <script>
         $(function () {
