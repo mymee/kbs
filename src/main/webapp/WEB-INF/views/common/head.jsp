@@ -48,9 +48,9 @@
             success: function (data, textStatus, jqXHR) {
                 console.log("SUCCESS: ", data);
 
-                if(data.PROCESS_YN) {
+                if (data.PROCESS_YN) {
                     $("#koreanBattle").text('우리말겨루기 종료').button('refresh');
-                }else{
+                } else {
                     $("#koreanBattle").text('우리말겨루기 시작').button('refresh');
                 }
                 console.log("TEXT: ", $("#koreanBattle").text());
@@ -58,8 +58,8 @@
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log("ERROR: ", errorThrown);
-                $("#koreanBattle").attr('value','우리말겨루기 시작').button('refresh');
-                dalert.alert("ERROR : " + errorThrown,"실패","");
+                $("#koreanBattle").attr('value', '우리말겨루기 시작').button('refresh');
+                dalert.alert("ERROR : " + errorThrown, "실패", "");
             }
         });
         $.ajax({
@@ -68,14 +68,14 @@
             success: function (data, textStatus, jqXHR) {
                 console.log("SUCCESS: ", data);
 
-                if(!data || data.QUIZ_NUM == 0){
+                if (!data || data.QUIZ_NUM == 0) {
                     $("#quizNextButton").text("다음문제").button('refresh');
-                }else {
+                } else {
                     $('#quizProcessNum').attr('value', data.QUIZ_NUM);
                     $('#quizNumText').html(data.QUIZ_NUM + "번 문제");
-                    if(data.QUIZ_END == 0){
+                    if (data.QUIZ_END == 0) {
                         $("#quizNextButton").text(data.QUIZ_NUM + "번 문제 종료").button('refresh');
-                    }else{
+                    } else {
                         $("#quizNextButton").text("다음문제").button('refresh');
                     }
 
@@ -106,9 +106,9 @@
         $('#koreanBattle').click(function () {
             var formData = 0;
 
-            if($(this).text().indexOf("우리말겨루기 시작") > -1){
+            if ($(this).text().indexOf("우리말겨루기 시작") > -1) {
                 formData = {quizNum: 1, quizProcessYN: 1};
-            }else{
+            } else {
                 formData = {quizNum: 1, quizProcessYN: 0};
             }
 
@@ -120,9 +120,9 @@
                 success: function (data, textStatus, jqXHR) {
                     console.log("SUCCESS: ", data);
 
-                    if($("#koreanBattle").text().indexOf("우리말겨루기 시작") > -1) {
+                    if ($("#koreanBattle").text().indexOf("우리말겨루기 시작") > -1) {
                         $("#koreanBattle").text('우리말겨루기 종료').button('refresh');
-                    }else{
+                    } else {
                         $("#koreanBattle").text('우리말겨루기 시작').button('refresh');
                     }
                     console.log("TEXT: ", $("#koreanBattle").text());
@@ -130,8 +130,8 @@
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log("ERROR: ", errorThrown);
-                    $("#koreanBattle").attr('value','우리말겨루기 시작').button('refresh');
-                    dalert.alert("ERROR : " + errorThrown,"실패","");
+                    $("#koreanBattle").attr('value', '우리말겨루기 시작').button('refresh');
+                    dalert.alert("ERROR : " + errorThrown, "실패", "");
                 }
             });
         });
@@ -158,16 +158,33 @@
                         data: formData,
                         success: function (data, textStatus, jqXHR) {
                             console.log("SUCCESS: ", data);
-                            dalert.alert(data,"성공","");
+                            dalert.alert(data, "성공", "");
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             console.log("ERROR: ", errorThrown);
-                            dalert.alert("ERROR : " + errorThrown,"실패","");
+                            dalert.alert("ERROR : " + errorThrown, "실패", "");
                         }
                     });
                 }
             });
         });
 
+        $('#systemDataClean').click(function () {
+            dalert.confirm("데이터를 초기화 하시겠습니까?", "문제풀이 저장", function (result) {
+                if (result) {
+                    $.ajax({
+                        url: "${pageContext.request.contextPath}/operator/clean",
+                        type: "GET",
+                        success: function (data, textStatus, jqXHR) {
+                            console.log("SUCCESS: ", data);
+                            dalert.alert(data.returnMessage, "성공", "");
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log("ERROR: ", errorThrown);
+                        }
+                    });
+                }
+            });
+        });
     });
 </script>

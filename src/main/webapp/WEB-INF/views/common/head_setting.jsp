@@ -18,6 +18,7 @@
       href="${pageContext.request.contextPath}/resources/js/jquery-ui-1.11.4.custom/jquery-ui.css"/>
 <!-- Custom styling plus plugins -->
 <link href="${pageContext.request.contextPath}/resources/css/custom.css" rel="stylesheet"/>
+<link href="${pageContext.request.contextPath}/resources/css/kbsbook.css" rel="stylesheet"/>
 
 <script src="${pageContext.request.contextPath}/resources/js/jquery-1.12.0.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery-ui-1.11.4/jquery-ui.min.js"></script>

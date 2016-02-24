@@ -89,18 +89,18 @@
             });
             setInterval(function () {
                 $("#teamInfoRefresh").last().trigger("click");
-            }, 5000);
+            }, 50000);
 
             $('#quizNextButton').click(function () {
 
                 var actionUrl = "";
 
                 if ($(this).text().indexOf("다음문제") > -1) {
-
                     actionUrl = "${pageContext.request.contextPath}/books/quiz/next/" + (parseInt($('#quizProcessNum').val()) + 1);
                 } else {
                     actionUrl = "${pageContext.request.contextPath}/books/quiz/end/" + $('#quizProcessNum').val();
                 }
+
                 $.ajax({
                     url: actionUrl,
                     type: "POST",
@@ -108,6 +108,8 @@
                         console.log("SUCCESS: ", data);
 
                         if (parseInt(data.QUIZ_END) > 0) {
+                            $('#quizProcessNum').attr('value', data.QUIZ_NUM);
+                            $('#quizNumText').html(data.QUIZ_NUM + "번 문제");
                             $("#quizNextButton").text("다음문제").button('refresh');
                         } else {
                             $('#quizProcessNum').attr('value', data.QUIZ_NUM);
@@ -298,6 +300,16 @@
                             } else {
                                 $('#teamQuizProcessStatus_' + data.SEQ).html("문제 풀이 진행중");
                                 $('#teamQuizProcessColor_' + data.SEQ).attr('class', 'adm_schbox_cr4');
+                            }
+
+                            if (parseInt(data.QUIZ_END) > 0) {
+                                $('#quizProcessNum').attr('value', data.QUIZ_NUM);
+                                $('#quizNumText').html(data.QUIZ_NUM + "번 문제");
+                                $("#quizNextButton").text("다음문제").button('refresh');
+                            } else {
+                                $('#quizProcessNum').attr('value', data.QUIZ_NUM);
+                                $('#quizNumText').html(data.QUIZ_NUM + "번 문제");
+                                $("#quizNextButton").text(data.QUIZ_NUM + "번 문제 종료").button('refresh');
                             }
                         }
                         //alert(data);

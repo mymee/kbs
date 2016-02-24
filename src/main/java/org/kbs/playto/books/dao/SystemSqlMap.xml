@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="System">
+
+    <update id="updateCleanKoreanBattleQuiz" parameterType="valueObject">
+        UPDATE KOREAN_BATTLE_QUIZ SET PROCESS_YN = 0
+    </update>
+    <update id="updateCleanQuizInfo" parameterType="valueObject">
+        UPDATE QUIZ_INFO SET PROCESS_YN = NULL, PRIORITY_TEAM_SEQ = NULL, PRIORITY_YN = NULL, DOUBLE_TEAM_SEQ = NULL, DOUBLE_YN = NULL, BEGIN_DT = NULL, END_DT = NULL
+    </update>
+
+    <update id="updateCleanQuizProcess" parameterType="valueObject">
+        UPDATE QUIZ_PROCESS SET QUIZ_NUM = 0, QUIZ_END = 0, QUIZ_DT = NULL
+    </update>
+    <update id="updateCleanTeamInfo" parameterType="valueObject">
+        UPDATE TEAM_INFO SET BASE_SCORE = BASE_SCORE - RANK_SCORE, RANK_SCORE = 0
+    </update>
+
+    <delete id="deleteKoreanBattle" parameterType="valueObject">
+        DELETE FROM KOREAN_BATTLE_ANSWER
+    </delete>
+    <delete id="deleteWorkingMemory" parameterType="valueObject">
+        DELETE FROM WORKING_MEMORY
+    </delete>
+    <delete id="deleteQuizChance" parameterType="valueObject">
+        DELETE FROM QUIZ_CHANCE
+    </delete>
+    <delete id="deleteQuizScore" parameterType="valueObject">
+        DELETE FROM QUIZ_SCORE
+    </delete>
+
+</mapper>

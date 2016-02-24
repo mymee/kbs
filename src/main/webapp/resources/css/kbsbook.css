@@ -12,13 +12,14 @@ body {
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
+	font-family:'나눔고딕', 'NanumGothic', Arial, sans-serif;
 }
 
 .tit_div {
 	position: absolute;
 	left: 2px;
 	margin-left: 450px;
-	top: 36px;
+	top: 42px;
 	z-index: 99;
 	height: 54px;
 	width: 1317px;
@@ -62,7 +63,7 @@ body {
 	position: absolute;
 	left: 91px;
 	margin-left: 450px;
-	top: 160px;
+	top: 177px;
 	z-index: 99;
 	height: 70px;
 	width: 350px;
@@ -372,7 +373,7 @@ body {
 	position: absolute;
 	left: 67px;
 	margin-left: 450px;
-	top: 600px;
+	top: 560px;
 	z-index: 99;
 	height: 100px;
 	width: 1179px;
@@ -710,10 +711,10 @@ body {
 	position: absolute;
 	left: 30px;
 	margin-left: 240px;
-	top: 20px;
+	top: 10px;
 	z-index: 99;
 	height: 10px;
-	width: 500px;
+	width: 810px;
 	font-size: 12px;
 	color: #666;
 }

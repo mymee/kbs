@@ -7,7 +7,7 @@
         select * from QUIZ_Score WHERE TEAM_SEQ = #{teamSeq} AND QUIZ_NUM = #{quizNum}
     </select>
     <select id="selectQuizScoreChance" parameterType="valueObject" resultType="valueObject">
-        SELECT S.*,C.CHANCE_TYPE,C.TARGET_TEAM,C.AGREE_CHANCE,C.REG_DT FROM (SELECT * FROM QUIZ_SCORE WHERE QUIZ_NUM = 5) S LEFT JOIN QUIZ_CHANCE C ON S.TEAM_SEQ = C.TEAM_SEQ AND S.QUIZ_NUM = C.QUIZ_NUM
+        SELECT S.*,C.CHANCE_TYPE,C.TARGET_TEAM,C.AGREE_CHANCE,C.REG_DT FROM (SELECT * FROM QUIZ_SCORE WHERE QUIZ_NUM = #{quizNum}) S LEFT JOIN QUIZ_CHANCE C ON S.TEAM_SEQ = C.TEAM_SEQ AND S.QUIZ_NUM = C.QUIZ_NUM
     </select>
 
     <select id="selectQuizChance" parameterType="valueObject" resultType="valueObject">

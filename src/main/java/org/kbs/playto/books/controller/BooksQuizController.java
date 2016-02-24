@@ -179,23 +179,28 @@ public class BooksQuizController {
 
             switch (chanceType) {
                 case 1:
-                    if (quizInfoAnswer.toString().equals(answer.toString())) {
+                    if (quizInfoAnswer.equals(answer)) {
                         teamScore = quizInfoScore;
                         quizVO.setNumber("teamSeq", teamSeq);
                         quizVO.setNumber("teamScore", teamScore);
                     }
                     break;
                 case 2:
+                    if (quizInfoAnswer.equals(answer)) {
+                        teamScore = quizInfoScore;
+                        quizVO.setNumber("teamSeq", teamSeq);
+                        quizVO.setNumber("teamScore", teamScore);
+                    }
                     break;
                 case 3:
-                    if (quizInfoAnswer.toString().equals(answer.toString())) {
+                    if (quizInfoAnswer.equals(answer)) {
                         teamScore = quizInfoScore * 2;
                         quizVO.setNumber("teamSeq", teamSeq);
                         quizVO.setNumber("teamScore", teamScore);
                     }
                     break;
                 case 4:
-                    if (quizInfoAnswer.toString().equals(answer.toString())) {
+                    if (quizInfoAnswer.equals(answer)) {
                         teamScore = quizInfoScore * 2;
                         if (quizScore.containsKey("TARGET_TEAM")) {
                             targetTeam = quizScore.getNumber("TARGET_TEAM").intValue();
@@ -210,10 +215,25 @@ public class BooksQuizController {
                     }
                     break;
                 case 5:
+                    if (quizInfoAnswer.equals(answer)) {
+                        teamScore = quizInfoScore;
+                        quizVO.setNumber("teamSeq", teamSeq);
+                        quizVO.setNumber("teamScore", teamScore);
+                    }
                     break;
                 case 6:
+                    if (quizInfoAnswer.equals(answer)) {
+                        teamScore = quizInfoScore;
+                        quizVO.setNumber("teamSeq", teamSeq);
+                        quizVO.setNumber("teamScore", teamScore);
+                    }
                     break;
                 default:
+                    if (quizInfoAnswer.equals(answer)) {
+                        teamScore = quizInfoScore;
+                        quizVO.setNumber("teamSeq", teamSeq);
+                        quizVO.setNumber("teamScore", teamScore);
+                    }
                     break;
             }
             quizDAO.updateQuizScore(quizVO);

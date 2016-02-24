@@ -245,7 +245,7 @@
                         //alert(errorThrown);
                     }
                 });
-            }, 500000);
+            }, 50000);
             $('#quizAnswerSave').click(function () {
 
                 var quizAnswer = "";

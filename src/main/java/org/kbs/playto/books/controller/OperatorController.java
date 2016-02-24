@@ -1,10 +1,7 @@
 package org.kbs.playto.books.controller;
 
 import org.kbs.playto.books.common.ValueObject;
-import org.kbs.playto.books.dao.KoreanBattleDAO;
-import org.kbs.playto.books.dao.QuizDAO;
-import org.kbs.playto.books.dao.TeamInfoDAO;
-import org.kbs.playto.books.dao.WorkingMemoryDAO;
+import org.kbs.playto.books.dao.*;
 import org.kbs.playto.books.entity.BooksQuizAnswer;
 import org.kbs.playto.books.entity.ReturnMessage;
 import org.kbs.playto.books.entity.TeamInfo;
@@ -39,6 +36,9 @@ public class OperatorController {
 
     @Autowired
     private QuizDAO quizDAO;
+
+    @Autowired
+    private SystemDAO systemDAO;
 
     @Autowired
     private SqlSessionTemplate sqlSession;
@@ -373,6 +373,15 @@ public class OperatorController {
     @ResponseBody
     public ReturnMessage operatorClean() {
 
+        systemDAO.deleteKoreanBattle();
+        systemDAO.deleteWorkingMemory();
+        systemDAO.deleteQuizScore();
+        systemDAO.deleteQuizChance();
+
+        systemDAO.updateCleanKoreanBattleQuiz();
+        systemDAO.updateCleanQuizInfo();
+        systemDAO.updateCleanQuizProcess();
+        systemDAO.updateCleanTeamInfo();
 
         ReturnMessage returnMessage = new ReturnMessage();
         returnMessage.setReturnCode(1);
