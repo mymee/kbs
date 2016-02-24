@@ -6,9 +6,19 @@
     <select id="selectQuizScore" parameterType="valueObject" resultType="valueObject">
         select * from QUIZ_Score WHERE TEAM_SEQ = #{teamSeq} AND QUIZ_NUM = #{quizNum}
     </select>
+    <select id="selectQuizScoreChance" parameterType="valueObject" resultType="valueObject">
+        SELECT S.*,C.CHANCE_TYPE,C.TARGET_TEAM,C.AGREE_CHANCE,C.REG_DT FROM (SELECT * FROM QUIZ_SCORE WHERE QUIZ_NUM = 5) S LEFT JOIN QUIZ_CHANCE C ON S.TEAM_SEQ = C.TEAM_SEQ AND S.QUIZ_NUM = C.QUIZ_NUM
+    </select>
 
     <select id="selectQuizChance" parameterType="valueObject" resultType="valueObject">
         select * from QUIZ_CHANCE WHERE TEAM_SEQ = #{teamSeq} AND QUIZ_NUM = (SELECT QUIZ_NUM+1 FROM QUIZ_PROCESS WHERE NUM=1)
+    </select>
+
+    <select id="selectQuizTeamChance" parameterType="valueObject" resultType="valueObject">
+        select * from QUIZ_CHANCE WHERE TEAM_SEQ = #{teamSeq} AND QUIZ_NUM = #{quizNum}
+    </select>
+    <select id="selectQuizNumFirstChance" parameterType="valueObject" resultType="valueObject">
+        SELECT * FROM QUIZ_CHANCE WHERE CHANCE_TYPE = 1 AND QUIZ_NUM = #{quizNum}
     </select>
 
     <select id="selectQuizProcessNumber" parameterType="valueObject" resultType="valueObject">
@@ -33,7 +43,7 @@
     </select>
 
     <select id="selectQuizInfoProcess" parameterType="valueObject" resultType="valueObject">
-        select * from QUIZ_INFO WHERE PROCESS_YN = 1
+        select * from QUIZ_PROCESS WHERE NUM = 1
     </select>
 
     <update id="updateQuizChance" parameterType="valueObject">
@@ -66,6 +76,38 @@
 
     <update id="updateQuizDouble" parameterType="valueObject">
         UPDATE QUIZ_INFO SET DOUBLE_TEAM_SEQ = #{teamSeq}, DOUBLE_YN = #{doubleYN} WHERE NUM = #{quizNum}
+    </update>
+    <update id="updateQuizScore" parameterType="valueObject">
+        UPDATE QUIZ_SCORE
+        SET
+          QUIZ_DT = now()
+        <if test="teamScore != null and teamScore != ''">
+            ,SCORE = #{teamScore}
+        </if>
+        <if test="chance1 != null and chance1 != ''">
+            ,CHANCE_1 = #{chance1}
+        </if>
+        <if test="chance2 != null and chance2 != ''">
+            ,CHANCE_2 = #{chance1}
+        </if>
+        <if test="chance3 != null and chance3 != ''">
+            ,CHANCE_3 = #{chance1}
+        </if>
+        <if test="chance4 != null and chance4 != ''">
+            ,CHANCE_4 = #{chance1}
+        </if>
+        <if test="chance5 != null and chance5 != ''">
+            ,CHANCE_5 = #{chance1}
+        </if>
+        <if test="chance6 != null and chance6 != ''">
+            ,CHANCE_6 = #{chance1}
+        </if>
+            ,SCORE_END = 1
+            ,SCORE_END_DT = now()
+        WHERE
+          TEAM_SEQ = #{teamSeq}
+          AND QUIZ_NUM = #{quizNum}
+          AND SCORE_END IS NOT TRUE
     </update>
 
     <insert id="insertQuizAnswer" parameterType="valueObject">
@@ -105,6 +147,8 @@
           QUIZ_NUM,
           TEAM_SEQ,
           CHANCE_TYPE,
+          TARGET_TEAM,
+          AGREE_CHANCE,
           REG_DT
         )
         VALUES
@@ -112,6 +156,8 @@
           (SELECT QUIZ_NUM+1 FROM QUIZ_PROCESS WHERE NUM = 1)
           ,#{teamSeq}
           ,#{quizChance}
+          ,#{targetTeam}
+          ,#{agreeChance}
           ,now()
         )
     </insert>

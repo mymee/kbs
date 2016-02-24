@@ -8226,361 +8226,367 @@ User</columns>
         <comment>팀코드 A,B,C,D</comment>
         <data-type>varchar(5)</data-type>
       </column>
-      <key id="2058" parent="166" name="PRIMARY">
+      <column id="2058" parent="166" name="TEAM_SLOGAN">
+        <data-type>varchar(1024)</data-type>
+      </column>
+      <key id="2059" parent="166" name="PRIMARY">
         <columns>SEQ</columns>
         <primary>1</primary>
       </key>
-      <column id="2059" parent="167" name="TEAM_CODE">
+      <column id="2060" parent="167" name="TEAM_CODE">
         <comment>팀명 A,B,C,D</comment>
         <mandatory>1</mandatory>
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2060" parent="167" name="XY_1">
+      <column id="2061" parent="167" name="XY_1">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2061" parent="167" name="XY_2">
+      <column id="2062" parent="167" name="XY_2">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2062" parent="167" name="XY_3">
+      <column id="2063" parent="167" name="XY_3">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2063" parent="167" name="XY_4">
+      <column id="2064" parent="167" name="XY_4">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2064" parent="167" name="XY_5">
+      <column id="2065" parent="167" name="XY_5">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2065" parent="167" name="XY_6">
+      <column id="2066" parent="167" name="XY_6">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2066" parent="167" name="XY_7">
+      <column id="2067" parent="167" name="XY_7">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2067" parent="167" name="XY_8">
+      <column id="2068" parent="167" name="XY_8">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2068" parent="167" name="XY_9">
+      <column id="2069" parent="167" name="XY_9">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2069" parent="167" name="XY_10">
+      <column id="2070" parent="167" name="XY_10">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2070" parent="167" name="XY_11">
+      <column id="2071" parent="167" name="XY_11">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2071" parent="167" name="XY_12">
+      <column id="2072" parent="167" name="XY_12">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2072" parent="167" name="XY_13">
+      <column id="2073" parent="167" name="XY_13">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2073" parent="167" name="XY_14">
+      <column id="2074" parent="167" name="XY_14">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2074" parent="167" name="XY_15">
+      <column id="2075" parent="167" name="XY_15">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2075" parent="167" name="XY_16">
+      <column id="2076" parent="167" name="XY_16">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2076" parent="167" name="XY_17">
+      <column id="2077" parent="167" name="XY_17">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2077" parent="167" name="XY_18">
+      <column id="2078" parent="167" name="XY_18">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2078" parent="167" name="XY_19">
+      <column id="2079" parent="167" name="XY_19">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2079" parent="167" name="XY_20">
+      <column id="2080" parent="167" name="XY_20">
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2080" parent="167" name="WORKING_FILE">
+      <column id="2081" parent="167" name="WORKING_FILE">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2081" parent="167" name="WORKING_IMAGE">
+      <column id="2082" parent="167" name="WORKING_IMAGE">
         <data-type>longblob</data-type>
       </column>
-      <column id="2082" parent="167" name="WORKING_DT">
+      <column id="2083" parent="167" name="WORKING_DT">
         <mandatory>1</mandatory>
         <data-type>datetime</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
-      <key id="2083" parent="167" name="PRIMARY">
+      <key id="2084" parent="167" name="PRIMARY">
         <columns>TEAM_CODE
 WORKING_DT</columns>
         <primary>1</primary>
       </key>
-      <column id="2084" parent="168" name="TEAM_CODE">
+      <column id="2085" parent="168" name="TEAM_CODE">
         <mandatory>1</mandatory>
         <data-type>varchar(5)</data-type>
       </column>
-      <column id="2085" parent="168" name="ANSWER_1">
+      <column id="2086" parent="168" name="ANSWER_1">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2086" parent="168" name="ANSWER_2">
+      <column id="2087" parent="168" name="ANSWER_2">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2087" parent="168" name="ANSWER_3">
+      <column id="2088" parent="168" name="ANSWER_3">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2088" parent="168" name="ANSWER_4">
+      <column id="2089" parent="168" name="ANSWER_4">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2089" parent="168" name="ANSWER_5">
+      <column id="2090" parent="168" name="ANSWER_5">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2090" parent="168" name="ANSWER_6">
+      <column id="2091" parent="168" name="ANSWER_6">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2091" parent="168" name="ANSWER_7">
+      <column id="2092" parent="168" name="ANSWER_7">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2092" parent="168" name="ANSWER_8">
+      <column id="2093" parent="168" name="ANSWER_8">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2093" parent="168" name="ANSWER_9">
+      <column id="2094" parent="168" name="ANSWER_9">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2094" parent="168" name="ANSWER_10">
+      <column id="2095" parent="168" name="ANSWER_10">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2095" parent="168" name="ANSWER_FILE">
+      <column id="2096" parent="168" name="ANSWER_FILE">
         <data-type>varchar(2014)</data-type>
       </column>
-      <column id="2096" parent="168" name="ANSWER_IMAGE">
+      <column id="2097" parent="168" name="ANSWER_IMAGE">
         <data-type>longblob</data-type>
       </column>
-      <column id="2097" parent="168" name="ANSWER_DT">
+      <column id="2098" parent="168" name="ANSWER_DT">
         <mandatory>1</mandatory>
         <data-type>datetime</data-type>
         <default-expression>&apos;0000-00-00 00:00:00&apos;</default-expression>
       </column>
-      <key id="2098" parent="168" name="PRIMARY">
+      <key id="2099" parent="168" name="PRIMARY">
         <columns>TEAM_CODE
 ANSWER_DT</columns>
         <primary>1</primary>
       </key>
-      <column id="2099" parent="169" name="NUM">
+      <column id="2100" parent="169" name="NUM">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="2100" parent="169" name="TEXT_1">
+      <column id="2101" parent="169" name="TEXT_1">
         <comment>우리말겨루기 문제</comment>
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2101" parent="169" name="TEXT_2">
+      <column id="2102" parent="169" name="TEXT_2">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2102" parent="169" name="TEXT_3">
+      <column id="2103" parent="169" name="TEXT_3">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2103" parent="169" name="TEXT_4">
+      <column id="2104" parent="169" name="TEXT_4">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2104" parent="169" name="TEXT_5">
+      <column id="2105" parent="169" name="TEXT_5">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2105" parent="169" name="TEXT_6">
+      <column id="2106" parent="169" name="TEXT_6">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2106" parent="169" name="TEXT_7">
+      <column id="2107" parent="169" name="TEXT_7">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2107" parent="169" name="TEXT_8">
+      <column id="2108" parent="169" name="TEXT_8">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2108" parent="169" name="TEXT_9">
+      <column id="2109" parent="169" name="TEXT_9">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2109" parent="169" name="TEXT_10">
+      <column id="2110" parent="169" name="TEXT_10">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2110" parent="169" name="ANSWER_1">
+      <column id="2111" parent="169" name="ANSWER_1">
         <comment>우리말겨루기 답안</comment>
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2111" parent="169" name="ANSWER_2">
+      <column id="2112" parent="169" name="ANSWER_2">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2112" parent="169" name="ANSWER_3">
+      <column id="2113" parent="169" name="ANSWER_3">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2113" parent="169" name="ANSWER_4">
+      <column id="2114" parent="169" name="ANSWER_4">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2114" parent="169" name="ANSWER_5">
+      <column id="2115" parent="169" name="ANSWER_5">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2115" parent="169" name="ANSWER_6">
+      <column id="2116" parent="169" name="ANSWER_6">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2116" parent="169" name="ANSWER_7">
+      <column id="2117" parent="169" name="ANSWER_7">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2117" parent="169" name="ANSWER_8">
+      <column id="2118" parent="169" name="ANSWER_8">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2118" parent="169" name="ANSWER_9">
+      <column id="2119" parent="169" name="ANSWER_9">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2119" parent="169" name="ANSWER_10">
+      <column id="2120" parent="169" name="ANSWER_10">
         <data-type>varchar(1024)</data-type>
       </column>
-      <column id="2120" parent="169" name="PROCESS_YN">
+      <column id="2121" parent="169" name="PROCESS_YN">
         <comment>우리말겨루기 진행여부</comment>
         <data-type>tinyint(1)</data-type>
       </column>
-      <key id="2121" parent="169" name="PRIMARY">
+      <key id="2122" parent="169" name="PRIMARY">
         <columns>NUM</columns>
         <primary>1</primary>
       </key>
-      <column id="2122" parent="170" name="NUM">
+      <column id="2123" parent="170" name="NUM">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="2123" parent="170" name="QUIZ_TYPE">
+      <column id="2124" parent="170" name="QUIZ_TYPE">
         <comment>1.객관식, 2.OX 3.주관식</comment>
         <mandatory>1</mandatory>
         <data-type>tinyint(4)</data-type>
       </column>
-      <column id="2124" parent="170" name="QUIZ_TEXT">
+      <column id="2125" parent="170" name="QUIZ_TEXT">
         <mandatory>1</mandatory>
         <data-type>varchar(2048)</data-type>
       </column>
-      <column id="2125" parent="170" name="EXAMPLE_1">
+      <column id="2126" parent="170" name="EXAMPLE_1">
         <data-type>varchar(2048)</data-type>
       </column>
-      <column id="2126" parent="170" name="EXAMPLE_2">
+      <column id="2127" parent="170" name="EXAMPLE_2">
         <data-type>varchar(2048)</data-type>
       </column>
-      <column id="2127" parent="170" name="EXAMPLE_3">
+      <column id="2128" parent="170" name="EXAMPLE_3">
         <data-type>varchar(2048)</data-type>
       </column>
-      <column id="2128" parent="170" name="EXAMPLE_4">
+      <column id="2129" parent="170" name="EXAMPLE_4">
         <data-type>varchar(2048)</data-type>
       </column>
-      <column id="2129" parent="170" name="ANSWER">
+      <column id="2130" parent="170" name="ANSWER">
         <comment>답안</comment>
         <data-type>varchar(2048)</data-type>
       </column>
-      <column id="2130" parent="170" name="HINT">
+      <column id="2131" parent="170" name="HINT">
         <data-type>text</data-type>
       </column>
-      <column id="2131" parent="170" name="SCORE">
+      <column id="2132" parent="170" name="SCORE">
         <comment>문제 점수</comment>
         <data-type>int(11)</data-type>
       </column>
-      <column id="2132" parent="170" name="PROCESS_YN">
+      <column id="2133" parent="170" name="PROCESS_YN">
         <comment>1. 진행상태</comment>
         <data-type>tinyint(4)</data-type>
       </column>
-      <column id="2133" parent="170" name="BEGIN_DT">
+      <column id="2134" parent="170" name="BEGIN_DT">
         <data-type>datetime</data-type>
       </column>
-      <column id="2134" parent="170" name="END_DT">
+      <column id="2135" parent="170" name="END_DT">
         <data-type>datetime</data-type>
       </column>
-      <column id="2135" parent="170" name="PRIORITY_TEAM_SEQ">
+      <column id="2136" parent="170" name="PRIORITY_TEAM_SEQ">
         <data-type>int(11)</data-type>
       </column>
-      <column id="2136" parent="170" name="PRIORITY_YN">
+      <column id="2137" parent="170" name="PRIORITY_YN">
         <data-type>tinyint(4)</data-type>
       </column>
-      <column id="2137" parent="170" name="DOUBLE_TEAM_SEQ">
+      <column id="2138" parent="170" name="DOUBLE_TEAM_SEQ">
         <data-type>int(11)</data-type>
       </column>
-      <column id="2138" parent="170" name="DOUBLE_YN">
+      <column id="2139" parent="170" name="DOUBLE_YN">
         <data-type>tinyint(4)</data-type>
       </column>
-      <key id="2139" parent="170" name="PRIMARY">
+      <key id="2140" parent="170" name="PRIMARY">
         <columns>NUM</columns>
         <primary>1</primary>
       </key>
-      <column id="2140" parent="171" name="TEAM_SEQ">
+      <column id="2141" parent="171" name="TEAM_SEQ">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="2141" parent="171" name="QUIZ_NUM">
+      <column id="2142" parent="171" name="QUIZ_NUM">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="2142" parent="171" name="QUIZ_ANSWER">
+      <column id="2143" parent="171" name="QUIZ_ANSWER">
         <data-type>text</data-type>
       </column>
-      <column id="2143" parent="171" name="SCORE">
+      <column id="2144" parent="171" name="SCORE">
         <data-type>int(11)</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <column id="2144" parent="171" name="CHANCE_1">
+      <column id="2145" parent="171" name="CHANCE_1">
         <comment>우선권카드</comment>
         <data-type>tinyint(4)</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <column id="2145" parent="171" name="CHANCE_2">
+      <column id="2146" parent="171" name="CHANCE_2">
         <comment>영상힌트카트</comment>
         <data-type>tinyint(4)</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <column id="2146" parent="171" name="CHANCE_3">
+      <column id="2147" parent="171" name="CHANCE_3">
         <comment>더블점수카드</comment>
         <data-type>tinyint(4)</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <column id="2147" parent="171" name="CHANCE_4">
+      <column id="2148" parent="171" name="CHANCE_4">
         <comment>더블찬스카드</comment>
         <data-type>tinyint(4)</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <column id="2148" parent="171" name="CHANCE_5">
+      <column id="2149" parent="171" name="CHANCE_5">
         <comment>미정</comment>
         <data-type>tinyint(4)</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <column id="2149" parent="171" name="CHANCE_6">
+      <column id="2150" parent="171" name="CHANCE_6">
         <comment>미정</comment>
         <data-type>tinyint(4)</data-type>
         <default-expression>&apos;0&apos;</default-expression>
       </column>
-      <column id="2150" parent="171" name="QUIZ_DT">
+      <column id="2151" parent="171" name="QUIZ_DT">
         <data-type>datetime</data-type>
       </column>
-      <key id="2151" parent="171" name="PRIMARY">
+      <key id="2152" parent="171" name="PRIMARY">
         <columns>TEAM_SEQ
 QUIZ_NUM</columns>
         <primary>1</primary>
       </key>
-      <column id="2152" parent="172" name="NUM">
+      <column id="2153" parent="172" name="NUM">
         <data-type>int(11)</data-type>
       </column>
-      <column id="2153" parent="172" name="QUIZ_NUM">
+      <column id="2154" parent="172" name="QUIZ_NUM">
         <data-type>int(11)</data-type>
       </column>
-      <column id="2154" parent="172" name="QUIZ_END">
+      <column id="2155" parent="172" name="QUIZ_END">
         <data-type>tinyint(4)</data-type>
       </column>
-      <column id="2155" parent="172" name="QUIZ_DT">
+      <column id="2156" parent="172" name="QUIZ_DT">
         <data-type>datetime</data-type>
       </column>
-      <column id="2156" parent="173" name="QUIZ_NUM">
+      <column id="2157" parent="173" name="QUIZ_NUM">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="2157" parent="173" name="TEAM_SEQ">
+      <column id="2158" parent="173" name="TEAM_SEQ">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="2158" parent="173" name="CHANCE_TYPE">
+      <column id="2159" parent="173" name="CHANCE_TYPE">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="2159" parent="173" name="AGREE_CHANCE">
+      <column id="2160" parent="173" name="TARGET_TEAM">
         <data-type>int(11)</data-type>
       </column>
-      <column id="2160" parent="173" name="REG_DT">
+      <column id="2161" parent="173" name="AGREE_CHANCE">
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="2162" parent="173" name="REG_DT">
         <data-type>datetime</data-type>
       </column>
-      <key id="2161" parent="173" name="PRIMARY">
+      <key id="2163" parent="173" name="PRIMARY">
         <columns>QUIZ_NUM
 TEAM_SEQ
 CHANCE_TYPE</columns>

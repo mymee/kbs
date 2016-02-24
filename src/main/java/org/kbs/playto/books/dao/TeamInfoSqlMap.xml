@@ -5,17 +5,22 @@
 <mapper namespace="TeamInfo">
 
     <select id="selectTeamListQuizProcessInfo" parameterType="valueObject" resultType="valueObject">
+        SELECT TI.*,IFNULL(TI.PROCESS_QUIZ_NUM_ORG,0) AS PROCESS_QUIZ_NUM, IFNULL(TI.BASE_SCORE,0) + IFNULL(TI.ANSWER_SCORE,0) AS TOTAL_SCORE FROM (
         SELECT * ,
-        (SELECT CHANCE_TYPE FROM QUIZ_CHANCE C WHERE C.AGREE_CHANCE = 1 AND T.SEQ = C.TEAM_SEQ AND C.QUIZ_NUM = P.QUIZ_NUM) AS CHANCE_TYPE,
+        (SELECT CHANCE_TYPE FROM QUIZ_CHANCE C WHERE T.SEQ = C.TEAM_SEQ AND C.QUIZ_NUM = P.QUIZ_NUM) AS CHANCE_TYPE,
         (SELECT CHANCE_TYPE FROM QUIZ_CHANCE C WHERE T.SEQ = C.TEAM_SEQ AND C.QUIZ_NUM = P.QUIZ_NUM+1) AS REQUEST_CHANCE_TYPE,
-        (SELECT SCORE FROM QUIZ_SCORE S WHERE T.SEQ = S.TEAM_SEQ AND S.QUIZ_NUM = P.QUIZ_NUM) AS QUIZ_ANSWER,
-        (SELECT IFNULL(SUM(SCORE),0)  FROM QUIZ_SCORE QS WHERE T.SEQ = QS.TEAM_SEQ GROUP BY TEAM_SEQ) AS ANSWER_SCORE
+        (SELECT QUIZ_ANSWER FROM QUIZ_SCORE S WHERE T.SEQ = S.TEAM_SEQ AND S.QUIZ_NUM = P.QUIZ_NUM) AS QUIZ_ANSWER,
+        (SELECT IFNULL(SUM(SCORE),0)  FROM QUIZ_SCORE QS WHERE T.SEQ = QS.TEAM_SEQ GROUP BY TEAM_SEQ) AS ANSWER_SCORE,
+        (SELECT NUM FROM QUIZ_INFO WHERE PROCESS_YN = 1) AS PROCESS_QUIZ_NUM_ORG,
+        (SELECT QUIZ_TYPE FROM QUIZ_INFO WHERE PROCESS_YN = 1) AS QUIZ_TYPE
         FROM team_info T, (SELECT QUIZ_NUM FROM QUIZ_PROCESS WHERE NUM=1) P
+        ) TI
         <if test="teamSeq != null and teamSeq != ''">
             <![CDATA[
-            WHERE T.SEQ = #{teamSeq}
+            WHERE TI.SEQ = #{teamSeq}
 		    ]]>
         </if>
+        ORDER BY TI.SCHOOL_NAME
     </select>
 
     <select id="selectTeamInfo" parameterType="valueObject" resultType="valueObject">
@@ -49,7 +54,8 @@
             CHANCE_4,
             CHANCE_5,
             CHANCE_6,
-            TEAM_CODE
+            TEAM_CODE,
+            TEAM_SLOGAN
 			)
     	VALUES
          (
@@ -64,8 +70,13 @@
  			, IFNULL(#{chance5},0)
  			, IFNULL(#{chance6},0)
  			, #{teamCode}
+ 			, #{teamGroupName}
      	)
     </insert>
+
+    <update id="updateTeamChanceTargetMinus" parameterType="valueObject">
+        UPDATE TEAM_INFO SET BASE_SCORE = BASE_SCORE - #{quizInfoScore}, RANK_SCORE = RANK_SCORE -#{quizInfoScore} WHERE SEQ = #{teamSeq}
+    </update>
 
     <update id="updateTeamInfo" parameterType="valueObject" >
         UPDATE TEAM_INFO SET

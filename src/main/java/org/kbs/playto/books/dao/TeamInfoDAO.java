@@ -35,6 +35,9 @@ public class TeamInfoDAO {
     public int updateTeamInfo(ValueObject paramVo){
         return sqlSession.update("TeamInfo.updateTeamInfo", paramVo);
     }
+    public int updateTeamChanceTargetMinus(ValueObject paramVo){
+        return sqlSession.update("TeamInfo.updateTeamChanceTargetMinus", paramVo);
+    }
     public int updateTeamChance(ValueObject paramVo){
         return sqlSession.update("TeamInfo.updateTeamChance", paramVo);
     }

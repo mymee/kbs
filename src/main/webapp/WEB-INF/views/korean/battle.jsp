@@ -6,7 +6,8 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/kbsbook.css"/>
-
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/resources/js/jquery-ui-1.11.4.custom/jquery-ui.css"/>
     <title>KBS'책들아놀자' 독서퀴즈쇼!</title>
     <style type="text/css">
         <!--
@@ -32,11 +33,15 @@
 
         -->
     </style>
+
     <script src="${pageContext.request.contextPath}/resources/js/jquery-1.12.0.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/html2canvas.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/html2canvas.svg.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/canvas2image.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery.cookie.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/dalert.jquery.min.js"></script>
+
     <script type="text/javascript">
         //LZW Compression/Decompression for Strings
         var LZW = {
@@ -127,6 +132,12 @@
             $("#teamCode").val($.cookie("TEAM_CODE"));
             $('#teamName').html($.cookie("NAME"));
             $('#schoolName').html($.cookie("SCHOOL_NAME"));
+
+            if($("#teamCode").val() == ""){
+                dalert.alert("팀/조 선택을 다시 해 주세요","선택","");
+                return false;
+            }
+
             $('#quizStart').click(function () {
                 $("#quizAnswer1").prop('readonly', false);
                 $("#quizAnswer2").prop('readonly', false);
@@ -139,67 +150,68 @@
             });
             $('#battleEndSave').click(function () {
 
-                var result = confirm($("#teamCode").val() + '조 문제풀이를 종료하시겠습니까?');
-                if (!result) {
-                    return false;
-                }
-                $('body').css('cursor', 'wait');
+                dalert.confirm($("#teamCode").val() + '조 답안을 저장하고 문제풀이를 종료하시겠습니까?',"문제풀이 저장",function(result){
+                    if(result){
 
-                html2canvas($('#koreanBattle'), {
-                    //allowTaint: true,
-                    //taintTest: false,
-                    useCORS: true,
-                    proxy: '/etc/proxy_image',
-                    onrendered: function (canvas) {
-                        var imageData = canvas.toDataURL("image/png");
-                        //Canvas2Image.saveAsPNG(canvas);
-                        //console.log("IMAGE: ", imageData);
-                        var imageDataCompress = LZW.compress(imageData);
+                        $('body').css('cursor', 'wait');
 
-                        console.log("quizAnswer1", $('#quizAnswer1').val());
-                        console.log("quizAnswer2", $('#quizAnswer2').val());
-                        console.log("quizAnswer3", $('#quizAnswer3').val());
-                        console.log("quizAnswer4", $('#quizAnswer4').val());
-                        console.log("quizAnswer5", $('#quizAnswer5').val());
-                        console.log("quizAnswer6", $('#quizAnswer6').val());
-                        console.log("quizAnswer7", $('#quizAnswer7').val());
-                        console.log("quizAnswer8", $('#quizAnswer8').val());
+                        html2canvas($('#koreanBattle'), {
+                            //allowTaint: true,
+                            //taintTest: false,
+                            useCORS: true,
+                            proxy: '/etc/proxy_image',
+                            onrendered: function (canvas) {
+                                var imageData = canvas.toDataURL("image/png");
+                                //Canvas2Image.saveAsPNG(canvas);
+                                //console.log("IMAGE: ", imageData);
+                                var imageDataCompress = LZW.compress(imageData);
 
-                        var formData = {
-                            teamCode: $("#teamCode").val(),
-                            quizAnswer1: $('#quizAnswer1').val(),
-                            quizAnswer2: $('#quizAnswer2').val(),
-                            quizAnswer3: $('#quizAnswer3').val(),
-                            quizAnswer4: $('#quizAnswer4').val(),
-                            quizAnswer5: $('#quizAnswer5').val(),
-                            quizAnswer6: $('#quizAnswer6').val(),
-                            quizAnswer7: $('#quizAnswer7').val(),
-                            quizAnswer8: $('#quizAnswer8').val(),
-                            imageData: imageDataCompress
-                        };
-                        $.ajax({
-                            url: "${pageContext.request.contextPath}/korean/battle/save",
-                            type: "POST",
-                            //cache: false,
-                            //processData: false,
-                            contentType: 'application/json',
-                            data: JSON.stringify(formData),
-                            success: function (data, textStatus, jqXHR) {
-                                $('body').css('cursor', 'auto');
-                                alert("정상적으로 저장 되었습니다.");
-                                console.log("SUCCESS: ", data);
-                                //alert(data);
-                            },
-                            error: function (jqXHR, textStatus, errorThrown) {
-                                $('body').css('cursor', 'auto');
-                                alert("저장에 실패하였습니다.");
-                                console.log("ERROR: ", errorThrown);
-                                //alert("ERROR : " + errorThrown);
+                                console.log("quizAnswer1", $('#quizAnswer1').val());
+                                console.log("quizAnswer2", $('#quizAnswer2').val());
+                                console.log("quizAnswer3", $('#quizAnswer3').val());
+                                console.log("quizAnswer4", $('#quizAnswer4').val());
+                                console.log("quizAnswer5", $('#quizAnswer5').val());
+                                console.log("quizAnswer6", $('#quizAnswer6').val());
+                                console.log("quizAnswer7", $('#quizAnswer7').val());
+                                console.log("quizAnswer8", $('#quizAnswer8').val());
+
+                                var formData = {
+                                    teamCode: $("#teamCode").val(),
+                                    quizAnswer1: $('#quizAnswer1').val(),
+                                    quizAnswer2: $('#quizAnswer2').val(),
+                                    quizAnswer3: $('#quizAnswer3').val(),
+                                    quizAnswer4: $('#quizAnswer4').val(),
+                                    quizAnswer5: $('#quizAnswer5').val(),
+                                    quizAnswer6: $('#quizAnswer6').val(),
+                                    quizAnswer7: $('#quizAnswer7').val(),
+                                    quizAnswer8: $('#quizAnswer8').val(),
+                                    imageData: imageDataCompress
+                                };
+                                $.ajax({
+                                    url: "${pageContext.request.contextPath}/korean/battle/save",
+                                    type: "POST",
+                                    //cache: false,
+                                    //processData: false,
+                                    contentType: 'application/json',
+                                    data: JSON.stringify(formData),
+                                    success: function (data, textStatus, jqXHR) {
+                                        dalert.alert("정상적으로 저장 되었습니다.","성공","");
+                                        console.log("SUCCESS: ", data);
+                                        //alert(data);
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        dalert.alert("저장에 실패하였습니다.","실패","");
+                                        console.log("ERROR: ", errorThrown);
+                                        //alert("ERROR : " + errorThrown);
+                                    }
+                                });
                             }
                         });
                     }
+                    else{
+                        return false;
+                    }
                 });
-                $('body').css('cursor', 'auto');
             });
         });
     </script>
@@ -309,7 +321,8 @@
                     <div class='woori_team'>
                         <select id="teamCode" name="teamCode" onFocus='this.initialSelect = this.selectedIndex;'
                                 onChange='this.selectedIndex = this.initialSelect;'
-                                style="width: 160px; height: 85px; font-size: 80px; opacity:0.5;">
+                                style="width: 180px; height: 85px; font-size: 80px; opacity:0.5;">
+                            <option value="" selected>조별</option>
                             <option value="A">A조</option>
                             <option value="B">B조</option>
                             <option value="C">C조</option>

@@ -66,13 +66,15 @@
                                 <td style="text-align:left;padding-left:10px;">
                                     <div class='mem_no'>
                                         <div class='working_team'>
-                                            <select id="teamCode" name="teamCode"
+                                            <select id="teamCode" name="teamCode" onFocus='this.initialSelect = this.selectedIndex;'
+                                                    onChange='this.selectedIndex = this.initialSelect;'
                                                     style="width: 160px; height: 100px; font-size: 80px; opacity:0.5px;">
                                                 <option value="A">A조</option>
                                                 <option value="B">B조</option>
                                                 <option value="C">C조</option>
                                                 <option value="D">D조</option>
                                             </select>
+                                            <h3>아래 팀을 선택하세요</h3>
                                         </div>
                                     </div>
                                 </td>

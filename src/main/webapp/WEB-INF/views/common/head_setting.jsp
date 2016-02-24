@@ -14,6 +14,8 @@
 <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet"/>
 <link href="${pageContext.request.contextPath}/resources/fonts/css/font-awesome.min.css" rel="stylesheet"/>
 <link href="${pageContext.request.contextPath}/resources/css/animate.min.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css"
+      href="${pageContext.request.contextPath}/resources/js/jquery-ui-1.11.4.custom/jquery-ui.css"/>
 <!-- Custom styling plus plugins -->
 <link href="${pageContext.request.contextPath}/resources/css/custom.css" rel="stylesheet"/>
 
@@ -24,6 +26,7 @@
 
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.cookie.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/dalert.jquery.min.js"></script>
 
 <!--[if lt IE 9]>
 <script src="${pageContext.request.contextPath}/resources/assets/js/ie8-responsive-file-warning.js"></script>
@@ -61,7 +64,7 @@
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log("ERROR: ", errorThrown);
-                alert("ERROR : " + errorThrown);
+                dalert.alert("ERROR : " + errorThrown,"실패","");
             }
         });
         $('#teamInfoCookieCreate').click(function () {
@@ -86,18 +89,21 @@
                     $.cookie('CHANCE5', datas.CHANCE_5);
                     $.cookie('TEAM_CODE', datas.TEAM_CODE);
                     $.cookie('TEAM_INFO', datas);
+
+                    $("#teamCode").val($.cookie("TEAM_CODE"));
+                    dalert.alert(datas.TEAM_CODE + "조\n" + datas.SCHOOL_NAME + "\n" + datas.NAME + "팀을 선택하였습니다.","성공","")
                     //alert(data);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log("ERROR: ", errorThrown);
-                    alert("ERROR : " + errorThrown);
+                    dalert.alert("ERROR : " + errorThrown,"실패","");
                 }
             });
 
         });
         $('#teamInfoCookieRead').click(function () {
 
-            alert("현재 " + $.cookie('TEAM_CODE') + "조 " + $.cookie('SCHOOL_NAME') + " : " + $.cookie('NAME') + "팀으로 선택되어 있습니다.");
+            dalert.alert("현재 " + $.cookie('TEAM_CODE') + "조 " + $.cookie('SCHOOL_NAME') + " : " + $.cookie('NAME') + "팀으로 선택되어 있습니다.","설정","");
             console.log('SEQ',$.cookie('SEQ'));
             console.log('NAME',$.cookie('NAME'));
             console.log('SCHOOL_NAME',$.cookie('SCHOOL_NAME'));

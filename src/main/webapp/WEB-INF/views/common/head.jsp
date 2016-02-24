@@ -14,6 +14,8 @@
 <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet"/>
 <link href="${pageContext.request.contextPath}/resources/fonts/css/font-awesome.min.css" rel="stylesheet"/>
 <link href="${pageContext.request.contextPath}/resources/css/animate.min.css" rel="stylesheet"/>
+<link href="${pageContext.request.contextPath}/resources/js/jquery-ui-1.11.4.custom/jquery-ui.css" rel="stylesheet"/>
+
 <!-- Custom styling plus plugins -->
 <link href="${pageContext.request.contextPath}/resources/css/custom.css" rel="stylesheet"/>
 <link href="${pageContext.request.contextPath}/resources/css/kbsbook.css" rel="stylesheet"/>
@@ -25,6 +27,8 @@
 
 <script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/jquery.cookie.js"></script>
+
+<script src="${pageContext.request.contextPath}/resources/js/dalert.jquery.min.js"></script>
 
 <!--[if lt IE 9]>
 <script src="${pageContext.request.contextPath}/resources/assets/js/ie8-responsive-file-warning.js"></script>
@@ -55,7 +59,7 @@
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log("ERROR: ", errorThrown);
                 $("#koreanBattle").attr('value','우리말겨루기 시작').button('refresh');
-                alert("ERROR : " + errorThrown);
+                dalert.alert("ERROR : " + errorThrown,"실패","");
             }
         });
         $.ajax({
@@ -127,7 +131,7 @@
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log("ERROR: ", errorThrown);
                     $("#koreanBattle").attr('value','우리말겨루기 시작').button('refresh');
-                    alert("ERROR : " + errorThrown);
+                    dalert.alert("ERROR : " + errorThrown,"실패","");
                 }
             });
         });
@@ -139,7 +143,7 @@
         });
         $('#battleEndSave').click(function (event) {
             event.preventDefault();
-            alert("11");
+
             html2canvas($('#koreanBattle'), {
                 //allowTaint: true,
                 //taintTest: false,
@@ -154,11 +158,11 @@
                         data: formData,
                         success: function (data, textStatus, jqXHR) {
                             console.log("SUCCESS: ", data);
-                            alert(data);
+                            dalert.alert(data,"성공","");
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             console.log("ERROR: ", errorThrown);
-                            alert("ERROR : " + errorThrown);
+                            dalert.alert("ERROR : " + errorThrown,"실패","");
                         }
                     });
                 }

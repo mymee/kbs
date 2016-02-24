@@ -111,7 +111,7 @@
                                 </tr>-->
                                 <tr>
                                     <td class="active text-center"
-                                        style="vertical-align: middle;background-color:#fff;">팀그룹
+                                        style="vertical-align: middle;background-color:#fff;">팀그룹(조)
                                     </td>
                                     <td style="text-align:left;padding-left:10px;">
                                         <select class="form-control" id="teamCode" name="teamCode" style="width:245px;">
@@ -123,7 +123,14 @@
                                         </select>
                                     </td>
                                 </tr>
-
+                                <tr>
+                                    <td class="active text-center"
+                                        style="vertical-align: middle;background-color:#fff;">팀그룹(조)명
+                                    </td>
+                                    <td style="text-align:left;padding-left:10px;">
+                                        <input class="form-control" style="display:inline-block;;" type="input" id="teamGroupName" name="teamGroupName" value="">
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </form>

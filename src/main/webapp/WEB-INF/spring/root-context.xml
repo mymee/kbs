@@ -41,11 +41,11 @@
         </property>
     </bean>
 
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
+	<!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+		<!--<property name="dataSource" ref="dataSource"/>-->
+	<!--</bean>-->
 
-	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+	<!--<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>-->
 
 	<!-- SqlSessionFactory설정 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

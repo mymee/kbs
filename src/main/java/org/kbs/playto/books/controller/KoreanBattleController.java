@@ -40,6 +40,7 @@ public class KoreanBattleController implements ServletContextAware{
     public String koreanBattle(HttpServletRequest request, HttpServletResponse response, Model model) {
         ValueObject quizVO = new ValueObject();
         quizVO.setString("quizNum", request.getParameter("quizNum"));
+
         quizVO.setString("quizProcessYN", "1");
 
         model.addAttribute("BATTLE_QUIZ",koreanBattleDAO.selectQuiz(quizVO));
