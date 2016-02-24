@@ -131,7 +131,7 @@
 
             $("#teamCode").val($.cookie("TEAM_CODE"));
             $('#teamName').html($.cookie("NAME"));
-            $('#schoolName').html($.cookie("SCHOOL_NAME"));
+            $('#schoolName').html($.cookie("TEAM_CODE")+"조");
 
             if($("#teamCode").val() == ""){
                 dalert.alert("팀/조 선택을 다시 해 주세요","선택","");
@@ -318,7 +318,7 @@
                                                                            src="${pageContext.request.contextPath}/resources/images/btn_start.png"
                                                                            style="border:none"></a></span>
                     </div>
-                    <div class='woori_team'>
+                    <div class='woori_team' style="display: none">
                         <select id="teamCode" name="teamCode" onFocus='this.initialSelect = this.selectedIndex;'
                                 onChange='this.selectedIndex = this.initialSelect;'
                                 style="width: 180px; height: 85px; font-size: 80px; opacity:0.5;">
