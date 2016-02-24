@@ -19,7 +19,7 @@
                     $("#selectDoubleChance").prepend("<option value=''>내꺼하자팀</option>");
                     $("#selectDoubleTarget").find("option").remove();
                     $("#selectDoubleTarget").prepend("<option value=''>타겟팀</option>");
-                    for (var i=0; i<datas.length; i++) {
+                    for (var i = 0; i < datas.length; i++) {
                         var data = datas[i];
                         //alert(data.REQUEST_CHANCE_TYPE);
 
@@ -71,7 +71,6 @@
                         }
 
 
-
                         if (data.QUIZ_ANSWER != null) {
                             $('#teamQuizProcessStatus_' + data.SEQ).html(data.QUIZ_ANSWER);
                             $('#teamQuizProcessColor_' + data.SEQ).attr('class', 'adm_schbox_cr5');
@@ -107,14 +106,13 @@
                     type: "POST",
                     success: function (data, textStatus, jqXHR) {
                         console.log("SUCCESS: ", data);
-                        if (!data) {
-                            if(data.QUIZ_END > 0){
-                                $("#quizNextButton").text("다음문제").button('refresh');
-                            }else{
-                                $('#quizProcessNum').attr('value', data.QUIZ_NUM);
-                                $('#quizNumText').html(data.QUIZ_NUM + "번 문제");
-                                $("#quizNextButton").text(data.QUIZ_NUM + "번 문제 종료").button('refresh');
-                            }
+
+                        if (parseInt(data.QUIZ_END) > 0) {
+                            $("#quizNextButton").text("다음문제").button('refresh');
+                        } else {
+                            $('#quizProcessNum').attr('value', data.QUIZ_NUM);
+                            $('#quizNumText').html(data.QUIZ_NUM + "번 문제");
+                            $("#quizNextButton").text(data.QUIZ_NUM + "번 문제 종료").button('refresh');
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
@@ -123,23 +121,23 @@
                 });
             });
             // 체크 박스 모두 해제
-            $("#checkAllDisable").click(function() {
-                $("input[name=checkboxChance]:checkbox").each(function() {
+            $("#checkAllDisable").click(function () {
+                $("input[name=checkboxChance]:checkbox").each(function () {
                     $(this).attr("checked", false);
                 });
             });
             $('#quizDoubleChance').click(function () {
-                if($("#selectDoubleChance option:selected").val() == ""){
-                    dalert.alert("내꺼하자 찬스팀을 선택하세요","선택","");
+                if ($("#selectDoubleChance option:selected").val() == "") {
+                    dalert.alert("내꺼하자 찬스팀을 선택하세요", "선택", "");
                     return false;
                 }
-                if($("#selectDoubleTarget option:selected").val() == ""){
-                    dalert.alert("내꺼하자 타겟팀을 선택하세요","선택","");
+                if ($("#selectDoubleTarget option:selected").val() == "") {
+                    dalert.alert("내꺼하자 타겟팀을 선택하세요", "선택", "");
                     return false;
                 }
-                if($("#selectDoubleChance option:selected").val() == $("#selectDoubleTarget option:selected").val()){
+                if ($("#selectDoubleChance option:selected").val() == $("#selectDoubleTarget option:selected").val()) {
                     alert($("#selectDoubleChance option:selected").val());
-                    dalert.alert("내꺼하자 찬스팀과 타겟팀이 달라야 합니다.","확인","");
+                    dalert.alert("내꺼하자 찬스팀과 타겟팀이 달라야 합니다.", "확인", "");
                     return false;
                 }
                 var teamSeq = [];
@@ -152,7 +150,7 @@
                     success: function (data, textStatus, jqXHR) {
                         console.log("SUCCESS: ", data);
 
-                        dalert.alert(data.returnMessage,"성공","");
+                        dalert.alert(data.returnMessage, "성공", "");
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log("ERROR: ", errorThrown);
@@ -167,17 +165,23 @@
                 //alert($("#teamTitleLayer_" + $("input:radio[name='radioChance']:checked").val()).css('background-color'));
 
                 if (!$("input:checkbox[name='checkboxChance']:checked").val()) {
-                    dalert.alert("다음 문제에 찬스권을 배정할 팀을 선택해 주세요","선택","");
+                    dalert.alert("다음 문제에 찬스권을 배정할 팀을 선택해 주세요", "선택", "");
                     return false;
                 }
                 var actionUrl = "";
-                switch ($(this).attr('id')){
-                    case "quizFirstChance": actionUrl = "${pageContext.request.contextPath}/operator/chance/1/"; break;
-                    case "quizDoubleScoreChance": actionUrl = "${pageContext.request.contextPath}/operator/chance/3/"; break;
-                    case "quizDoubleChance": actionUrl = "${pageContext.request.contextPath}/operator/chance/4/"; break;
+                switch ($(this).attr('id')) {
+                    case "quizFirstChance":
+                        actionUrl = "${pageContext.request.contextPath}/operator/chance/1/";
+                        break;
+                    case "quizDoubleScoreChance":
+                        actionUrl = "${pageContext.request.contextPath}/operator/chance/3/";
+                        break;
+                    case "quizDoubleChance":
+                        actionUrl = "${pageContext.request.contextPath}/operator/chance/4/";
+                        break;
                 }
                 var teamSeq = [];
-                $("input[name=checkboxChance]:checked").each(function() {
+                $("input[name=checkboxChance]:checked").each(function () {
                     teamSeq.push($(this).val());
                 });
                 $.ajax({
@@ -186,7 +190,7 @@
                     success: function (data, textStatus, jqXHR) {
                         console.log("SUCCESS: ", data);
 
-                        dalert.alert(data.returnMessage,"성공","");
+                        dalert.alert(data.returnMessage, "성공", "");
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log("ERROR: ", errorThrown);
@@ -200,30 +204,30 @@
             });
             <%----%>
             <%--$('#quizDoubleChance').click(function () {--%>
-                <%--if (!$("input:checkbox[name='checkboxChance']:checked").val()) {--%>
-                    <%--alert("팀을 선택해 주세요");--%>
-                    <%--return false;--%>
-                <%--}--%>
-                <%--var teamSeq = [];--%>
-                <%--$("input[name=checkboxChance]:checked").each(function() {--%>
-                    <%--teamSeq.push($(this).val());--%>
-                <%--});--%>
-                <%--//var teamSeq = $("input:checkbox[name='checkboxChance']:checked").val();--%>
+            <%--if (!$("input:checkbox[name='checkboxChance']:checked").val()) {--%>
+            <%--alert("팀을 선택해 주세요");--%>
+            <%--return false;--%>
+            <%--}--%>
+            <%--var teamSeq = [];--%>
+            <%--$("input[name=checkboxChance]:checked").each(function() {--%>
+            <%--teamSeq.push($(this).val());--%>
+            <%--});--%>
+            <%--//var teamSeq = $("input:checkbox[name='checkboxChance']:checked").val();--%>
 
-                <%--$.ajax({--%>
-                    <%--url: "${pageContext.request.contextPath}/operator/chance/4/" + teamSeq,--%>
-                    <%--type: "GET",--%>
-                    <%--success: function (data, textStatus, jqXHR) {--%>
-                        <%--console.log("SUCCESS: ", data);--%>
+            <%--$.ajax({--%>
+            <%--url: "${pageContext.request.contextPath}/operator/chance/4/" + teamSeq,--%>
+            <%--type: "GET",--%>
+            <%--success: function (data, textStatus, jqXHR) {--%>
+            <%--console.log("SUCCESS: ", data);--%>
 
-                        <%--alert(data.returnMessage);--%>
-                    <%--},--%>
-                    <%--error: function (jqXHR, textStatus, errorThrown) {--%>
-                        <%--console.log("ERROR: ", errorThrown);--%>
+            <%--alert(data.returnMessage);--%>
+            <%--},--%>
+            <%--error: function (jqXHR, textStatus, errorThrown) {--%>
+            <%--console.log("ERROR: ", errorThrown);--%>
 
-                        <%--//alert("ERROR : " + errorThrown);--%>
-                    <%--}--%>
-                <%--});--%>
+            <%--//alert("ERROR : " + errorThrown);--%>
+            <%--}--%>
+            <%--});--%>
             <%--});--%>
             $('#teamInfoRefresh').click(function () {
                 console.log("페이지 Refresh");
@@ -236,7 +240,7 @@
 //                        $("#selectDoubleChance").prepend("<option value=''>내꺼하자팀</option>");
 //                        $("#selectDoubleTarget").find("option").remove();
 //                        $("#selectDoubleTarget").prepend("<option value=''>타겟팀</option>");
-                        for (var i=0; i<datas.length; i++) {
+                        for (var i = 0; i < datas.length; i++) {
                             var data = datas[i];
                             //alert(data.REQUEST_CHANCE_TYPE);
 
@@ -286,7 +290,6 @@
                             } else {
                                 $('#teamQuizChanceColor_' + data.SEQ).attr('class', 'adm_chance_card');
                             }
-
 
 
                             if (data.QUIZ_ANSWER != null) {
@@ -350,7 +353,8 @@
                                             </h2>
                                         </div>
 
-                                        <div id="teamQuizProcessColor_${list.SEQ}" style="text-align: center;" class="adm_schbox_cr4">
+                                        <div id="teamQuizProcessColor_${list.SEQ}" style="text-align: center;"
+                                             class="adm_schbox_cr4">
                                             <h2>
                                                 <span id="teamQuizProcessStatus_${list.SEQ}">문제풀이 진행중</span><br>
                                             </h2>
