@@ -30,11 +30,11 @@ body {
 	position: absolute;
 	left: -67px;
 	margin-left: 450px;
-	top: 46px;
+	top: 73px;
 	z-index: 99;
 	height: 54px;
 	width: 813px;
-	font-size: 32px;
+	font-size: 22px;
 }
 
 .tit_div2 {
@@ -74,7 +74,7 @@ body {
 	position: absolute;
 	left: 908px;
 	margin-left: 450px;
-	top: -35px;
+	top: -15px;
 	z-index: 99;
 	height: 157px;
 	width: 320px;
