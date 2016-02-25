@@ -6,14 +6,14 @@ package org.kbs.playto.books.entity;
 public class TeamInfo {
     String schoolName;
     String teamName;
-    int teamBaseScore;
-    int teamRankScore;
-    int chance1;
-    int chance2;
-    int chance3;
-    int chance4;
-    int chance5;
-    int chance6;
+    int teamBaseScore = 0;
+    int teamRankScore = 0;
+    int chance1 = 0;
+    int chance2 = 0;
+    int chance3 = 0;
+    int chance4 = 0;
+    int chance5 = 0;
+    int chance6 = 0;
     String teamCode;
     String teamGroupName;
 

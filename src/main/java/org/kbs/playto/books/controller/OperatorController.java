@@ -206,6 +206,7 @@ public class OperatorController {
         teamInfoVO.setString("chance5", request.getParameter("chance5"));
         teamInfoVO.setString("chance6", request.getParameter("chance6"));
         teamInfoVO.setString("teamCode", request.getParameter("teamCode"));
+        teamInfoVO.setString("teamGroupName", request.getParameter("teamGroupName"));
 
         teamInfoDAO.updateTeamInfo(teamInfoVO);
 

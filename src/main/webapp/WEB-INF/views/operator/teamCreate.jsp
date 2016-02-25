@@ -13,7 +13,7 @@
 <div class="container body">
     <div class="main_container">
         <!-- Left -->
-        <jsp:include page="/WEB-INF/views/common/left.jsp"/>
+        <jsp:include page="/WEB-INF/views/common/left_team.jsp"/>
 
         <!-- Top -->
         <jsp:include page="/WEB-INF/views/common/top.jsp"/>

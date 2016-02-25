@@ -84,13 +84,14 @@
 			SCHOOL_NAME = #{schoolName},
 			BASE_SCORE = IFNULL(#{teamBaseScore},0),
 			RANK_SCORE = IFNULL(#{teamRankScore},0),
-			CHANCE_1 = #{chance1},
-            CHANCE_2 = #{chance2},
-            CHANCE_3 = #{chance3},
-            CHANCE_4 = #{chance4},
-            CHANCE_5 = #{chance5},
-            CHANCE_6 = #{chance6},
-            TEAM_CODE = #{teamCode}
+			CHANCE_1 = IFNULL(#{chance1},0),
+            CHANCE_2 = IFNULL(#{chance2},0),
+            CHANCE_3 = IFNULL(#{chance3},0),
+            CHANCE_4 = IFNULL(#{chance4},0),
+            CHANCE_5 = IFNULL(#{chance5},0),
+            CHANCE_6 = IFNULL(#{chance6},0),
+            TEAM_CODE = #{teamCode},
+            TEAM_SLOGAN = #{teamGroupName}
 		WHERE SEQ = #{teamSeq}
     </update>
     <update id="updateTeamChance" parameterType="valueObject" >

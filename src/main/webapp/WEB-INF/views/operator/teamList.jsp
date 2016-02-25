@@ -13,7 +13,7 @@
 <div class="container body">
     <div class="main_container">
         <!-- Left -->
-        <jsp:include page="/WEB-INF/views/common/left.jsp"/>
+        <jsp:include page="/WEB-INF/views/common/left_team.jsp"/>
 
         <!-- Top -->
         <jsp:include page="/WEB-INF/views/common/top.jsp"/>
@@ -35,7 +35,7 @@
                             <thead>
                             <tr style="background-color:#fff;">
                                 <th class="text-center" style="width:5%;">No.</th>
-                                <th class="text-center" style="width:5%;">팀그룹</th>
+                                <th class="text-center" style="width:5%;">팀그룹(조)</th>
                                 <th class="text-center" style="width:35%;">학교이름</th>
                                 <th class="text-center" style="width:30%;">팀이름</th>
                                 <th class="text-center" style="width:10%;">기본점수</th>
