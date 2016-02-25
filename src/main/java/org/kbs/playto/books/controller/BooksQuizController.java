@@ -49,7 +49,12 @@ public class BooksQuizController {
         }
 
         ValueObject quizVO = new ValueObject();
-        quizVO.setString("teamSeq", teamSeq);
+        if(teamSeq != null && teamSeq != ""){
+            quizVO.setString("teamSeq", teamSeq);
+        }else{
+            quizVO.setString("teamSeq", "0");
+        }
+
 
         model.addAttribute("TEAM_QUIZ_PROCESS", teamInfoDAO.selectTeamQuizProcessInfo(quizVO));
 //        model.addAttribute("QUIZ_PROCESS", quizDAO.selectQuizProcessNumber());

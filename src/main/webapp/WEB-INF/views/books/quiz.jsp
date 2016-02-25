@@ -59,9 +59,9 @@
             $("#teamSeq").val($.cookie("SEQ"));
 
             if ($("#teamSeq").val() == "") {
-
-                dalert.alert("팀/조 선택을 다시 해 주세요","선택","");
-
+                dalert.alert("팀/조 선택을 다시 해 주세요","선택",function callbackMe(){
+                    window.location.href = "${pageContext.request.contextPath}/";
+                });
                 return false;
             }
 
