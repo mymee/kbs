@@ -1,16 +1,16 @@
 /*
-Navicat MariaDB Data Transfer
+Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 100111
-Source Host           : localhost:3306
+Source Server         : 211.57.200.189
+Source Server Version : 50711
+Source Host           : 211.57.200.189:3306
 Source Database       : playto
 
-Target Server Type    : MariaDB
-Target Server Version : 100111
+Target Server Type    : MYSQL
+Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2016-02-22 01:25:56
+Date: 2016-02-25 13:55:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,7 +33,7 @@ CREATE TABLE `korean_battle_answer` (
   `ANSWER_10` varchar(1024) DEFAULT NULL,
   `ANSWER_FILE` varchar(2014) DEFAULT NULL,
   `ANSWER_IMAGE` longblob,
-  `ANSWER_DT` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `ANSWER_DT` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`TEAM_CODE`,`ANSWER_DT`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='우리말 겨루기 각 팀별(4개팀) 제출 답안';
 
@@ -74,7 +74,7 @@ CREATE TABLE `korean_battle_quiz` (
 -- ----------------------------
 -- Records of korean_battle_quiz
 -- ----------------------------
-INSERT INTO `korean_battle_quiz` VALUES ('1', '저만치 골목 막다른 곳에, 누런 시멘트 부대 종이를 흰 실로 얼기설기', '문살에 얽어 맨 철호네 집 방문이 보였다. 철호는 때에 절어서 마치', '가죽끈처럼 된 헝겊이 달린 문걸쇠를 잡아당겼다. 손가락이라도', '드나들만치 엉성한 문이면서 찌걱찌걱 집혀서 잘 열리지를 않았다.', '아래가 잔뜩 잡힌 채 비틀어진 문틈으로 그의 어머니의 소리가 새어 나왔다.', '“가자! 가자!”', '미치면 목소리마저 변하는 모양이었다. 그것은 이미 그의 어머니의 조용하고', '부드럽던 그 목소리가 아니고, 쨍쨍하고 간사한 게 어떤 딴 사람의 목소리였다.', null, null, null, null, null, '', null, null, null, null, null, null, '1');
+INSERT INTO `korean_battle_quiz` VALUES ('1', '저만치 골목 막다른 곳에, 누런 시멘트 부대 종이를 흰 실로 얼기설기', '문살에 얽어 맨 철호네 집 방문이 보였다. 철호는 때에 절어서 마치', '가죽끈처럼 된 헝겊이 달린 문걸쇠를 잡아당겼다. 손가락이라도', '드나들만치 엉성한 문이면서 찌걱찌걱 집혀서 잘 열리지를 않았다.', '아래가 잔뜩 잡힌 채 비틀어진 문틈으로 그의 어머니의 소리가 새어 나왔다.', '“가자! 가자!”', '미치면 목소리마저 변하는 모양이었다. 그것은 이미 그의 어머니의 조용하고', '부드럽던 그 목소리가 아니고, 쨍쨍하고 간사한 게 어떤 딴 사람의 목소리였다.', null, null, null, null, null, '', null, null, null, null, null, null, '0');
 
 -- ----------------------------
 -- Table structure for quiz_chance
@@ -84,6 +84,7 @@ CREATE TABLE `quiz_chance` (
   `QUIZ_NUM` int(11) NOT NULL,
   `TEAM_SEQ` int(11) NOT NULL,
   `CHANCE_TYPE` int(11) NOT NULL,
+  `TARGET_TEAM` int(11) DEFAULT NULL,
   `AGREE_CHANCE` int(11) DEFAULT NULL,
   `REG_DT` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`QUIZ_NUM`,`TEAM_SEQ`,`CHANCE_TYPE`)
@@ -105,9 +106,10 @@ CREATE TABLE `quiz_info` (
   `EXAMPLE_2` varchar(2048) DEFAULT NULL,
   `EXAMPLE_3` varchar(2048) DEFAULT NULL,
   `EXAMPLE_4` varchar(2048) DEFAULT NULL,
+  `EXAMPLE_5` varchar(2048) DEFAULT NULL,
   `ANSWER` varchar(2048) DEFAULT NULL COMMENT '답안',
   `HINT` text,
-  `SCORE` int(11) DEFAULT NULL COMMENT '문제 점수',
+  `SCORE` int(11) DEFAULT '0' COMMENT '문제 점수',
   `PROCESS_YN` tinyint(4) DEFAULT NULL COMMENT '1. 진행상태',
   `BEGIN_DT` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `END_DT` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
@@ -121,12 +123,12 @@ CREATE TABLE `quiz_info` (
 -- ----------------------------
 -- Records of quiz_info
 -- ----------------------------
-INSERT INTO `quiz_info` VALUES ('1', '1', '1번 문제', '1번 예제', '2번 예제', '3번 예제', '4번 예제', '2', null, '10', null, '2016-02-22 01:25:34', '2016-02-22 01:25:34', null, null, null, null);
-INSERT INTO `quiz_info` VALUES ('2', '2', '1번 문제', '1번 예제', '2번 예제', '3번 예제', '4번 예제', 'O', null, '20', null, '2016-02-21 21:21:48', '2016-02-21 21:21:48', null, null, null, null);
-INSERT INTO `quiz_info` VALUES ('3', '3', '1번 문제', '1번 예제', '2번 예제', '3번 예제', '4번 예제', '2', null, '30', null, '2016-02-21 21:21:50', '2016-02-21 21:21:50', null, null, null, null);
-INSERT INTO `quiz_info` VALUES ('4', '1', '1번 문제', '1번 예제', '2번 예제', '3번 예제', '4번 예제', '2', null, '10', null, '2016-02-22 00:23:44', '2016-02-22 00:23:44', null, null, null, null);
-INSERT INTO `quiz_info` VALUES ('5', '2', '1번 문제', '1번 예제', '2번 예제', '3번 예제', '4번 예제', '2', null, '20', null, '2016-02-22 00:23:50', '2016-02-22 00:23:50', null, null, null, null);
-INSERT INTO `quiz_info` VALUES ('6', '3', '1번 문제', '1번 예제', '2번 예제', '3번 예제', '4번 예제', '2', null, '30', null, '2016-02-22 00:23:45', '2016-02-22 00:23:45', null, null, null, null);
+INSERT INTO `quiz_info` VALUES ('1', '1', '1번 문제', '1번 예제', '2번 예제', '3번 예제', '4번 예제', null, '2', null, '10', null, null, null, null, null, null, null);
+INSERT INTO `quiz_info` VALUES ('2', '2', '1번 문제', '1번 예제', '2번 예제', '3번 예제', '4번 예제', null, 'O', null, '20', null, null, null, null, null, null, null);
+INSERT INTO `quiz_info` VALUES ('3', '3', '1번 문제', '1번 예제', '2번 예제', '3번 예제', '4번 예제', null, '2', null, '30', null, null, null, null, null, null, null);
+INSERT INTO `quiz_info` VALUES ('4', '1', '1번 문제', '1번 예제', '2번 예제', '3번 예제', '4번 예제', null, '2', null, '10', null, null, null, null, null, null, null);
+INSERT INTO `quiz_info` VALUES ('5', '2', '1번 문제', '1번 예제', '2번 예제', '3번 예제', '4번 예제', null, 'X', null, '20', null, null, null, null, null, null, null);
+INSERT INTO `quiz_info` VALUES ('6', '3', '1번 문제', '1번 예제', '2번 예제', '3번 예제', '4번 예제', null, '주관식 문제', null, '30', null, null, null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for quiz_process
@@ -142,7 +144,7 @@ CREATE TABLE `quiz_process` (
 -- ----------------------------
 -- Records of quiz_process
 -- ----------------------------
-INSERT INTO `quiz_process` VALUES ('1', '0', '0', '2016-02-22 01:24:04');
+INSERT INTO `quiz_process` VALUES ('1', '0', '0', null);
 
 -- ----------------------------
 -- Table structure for quiz_score
@@ -159,6 +161,8 @@ CREATE TABLE `quiz_score` (
   `CHANCE_4` tinyint(4) DEFAULT '0' COMMENT '더블찬스카드',
   `CHANCE_5` tinyint(4) DEFAULT '0' COMMENT '미정',
   `CHANCE_6` tinyint(4) DEFAULT '0' COMMENT '미정',
+  `SCORE_END` tinyint(4) DEFAULT NULL,
+  `SCORE_END_DT` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `QUIZ_DT` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`TEAM_SEQ`,`QUIZ_NUM`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='3단계 퀴즈 문제 각팀별(20개 학교) 제출 답안 및 점수';
@@ -175,41 +179,42 @@ CREATE TABLE `team_info` (
   `SEQ` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `NAME` varchar(255) NOT NULL,
   `SCHOOL_NAME` varchar(255) NOT NULL,
-  `BASE_SCORE` int(11) DEFAULT NULL,
-  `RANK_SCORE` int(11) DEFAULT '0',
-  `CHANCE_1` int(11) DEFAULT '0',
-  `CHANCE_2` int(11) DEFAULT '0',
-  `CHANCE_3` int(11) DEFAULT '0',
-  `CHANCE_4` int(11) DEFAULT '0',
-  `CHANCE_5` int(11) DEFAULT '0',
-  `CHANCE_6` int(11) DEFAULT '0',
+  `BASE_SCORE` int(11) NOT NULL DEFAULT '0',
+  `RANK_SCORE` int(11) NOT NULL DEFAULT '0',
+  `CHANCE_1` int(11) NOT NULL DEFAULT '0',
+  `CHANCE_2` int(11) NOT NULL DEFAULT '0',
+  `CHANCE_3` int(11) NOT NULL DEFAULT '0',
+  `CHANCE_4` int(11) NOT NULL DEFAULT '0',
+  `CHANCE_5` int(11) NOT NULL DEFAULT '0',
+  `CHANCE_6` int(11) NOT NULL DEFAULT '0',
   `TEAM_CODE` varchar(5) DEFAULT NULL COMMENT '팀코드 A,B,C,D',
+  `TEAM_SLOGAN` varchar(1024) DEFAULT NULL,
   PRIMARY KEY (`SEQ`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COMMENT='참여 학교 기본 정보 및 기본 점수';
 
 -- ----------------------------
 -- Records of team_info
 -- ----------------------------
-INSERT INTO `team_info` VALUES ('1', '책들아 놀자 1팀 : 아자 아자 화이팅!!', '놀자 1학교', '10', '0', '1', '1', '1', '1', '0', '0', 'A');
-INSERT INTO `team_info` VALUES ('2', '책들아 놀자 2팀', '놀자 2학교', '20', '0', '0', '0', '1', '0', '0', '0', 'B');
-INSERT INTO `team_info` VALUES ('3', '책들아 놀자 3팀 : 아자 아자 화이팅!!', '놀자 3학교', '30', '0', '0', '1', '0', '0', '0', '0', 'C');
-INSERT INTO `team_info` VALUES ('4', '책들아 놀자 4팀 : 아자 아자 화이팅!!', '놀자 4학교', '40', '0', '0', '1', '0', '0', '0', '0', 'D');
-INSERT INTO `team_info` VALUES ('5', '책들아 놀자 5팀 : 아자 아자 화이팅!!', '놀자 5학교', '50', '0', '0', '0', '1', '0', '0', '0', 'A');
-INSERT INTO `team_info` VALUES ('6', '책들아 놀자 6팀 : 아자 아자 화이팅!!', '놀자 6학교', '60', '0', '0', '1', '0', '0', '0', '0', 'B');
-INSERT INTO `team_info` VALUES ('7', '책들아 놀자 7팀 : 아자 아자 화이팅!!', '놀자 7학교', '70', '0', '0', '0', '1', '0', '0', '0', 'C');
-INSERT INTO `team_info` VALUES ('8', '책들아 놀자 8팀 : 아자 아자 화이팅!!', '놀자 8학교', '80', '0', '0', '0', '1', '0', '0', '0', 'D');
-INSERT INTO `team_info` VALUES ('9', '책들아 놀자 9팀 : 아자 아자 화이팅!!', '놀자 9학교', '90', '0', '0', '0', '1', '0', '0', '0', 'A');
-INSERT INTO `team_info` VALUES ('10', '책들아 놀자 10팀 : 아자 아자 화이팅!!', '놀자 10학교', '100', '0', '1', '0', '1', '1', '0', '0', 'B');
-INSERT INTO `team_info` VALUES ('11', '책들아 놀자 11팀 : 아자 아자 화이팅!!', '놀자 11학교', '110', '0', '0', '0', '1', '0', '0', '0', 'C');
-INSERT INTO `team_info` VALUES ('12', '책들아 놀자 12팀 : 아자 아자 화이팅!!', '놀자 12학교', '120', '0', '0', '0', '1', '0', '0', '0', 'D');
-INSERT INTO `team_info` VALUES ('13', '책들아 놀자 13팀 : 아자 아자 화이팅!!', '놀자 13학교', '130', '0', '0', '0', '1', '0', '0', '0', 'A');
-INSERT INTO `team_info` VALUES ('14', '책들아 놀자 14팀 : 아자 아자 화이팅!!', '놀자 14학교', '140', '0', '0', '0', '1', '0', '0', '0', 'B');
-INSERT INTO `team_info` VALUES ('15', '책들아 놀자 15팀 : 아자 아자 화이팅!!', '놀자 15학교', '150', '0', '0', '0', '1', '0', '0', '0', 'C');
-INSERT INTO `team_info` VALUES ('16', '책들아 놀자 16팀 : 아자 아자 화이팅!!', '놀자 16학교', '160', '0', '0', '0', '1', '0', '0', '0', 'D');
-INSERT INTO `team_info` VALUES ('17', '책들아 놀자 17팀 : 아자 아자 화이팅!!', '놀자 17학교', '170', '0', '0', '0', '1', '0', '0', '0', 'A');
-INSERT INTO `team_info` VALUES ('18', '책들아 놀자 18팀 : 아자 아자 화이팅!!', '놀자 18학교', '180', '0', '0', '0', '1', '0', '0', '0', 'B');
-INSERT INTO `team_info` VALUES ('19', '책들아 놀자 19팀 : 아자 아자 화이팅!!', '놀자 19학교', '190', '0', '0', '0', '1', '0', '0', '0', 'C');
-INSERT INTO `team_info` VALUES ('20', '책들아 놀자 20팀 : 아자 아자 화이팅!!', '놀자 20학교', '200', '0', '0', '0', '1', '0', '0', '0', 'D');
+INSERT INTO `team_info` VALUES ('1', '책들아 놀자 1팀 : 아자 아자 화이팅!!', '놀자 1학교', '10', '0', '1', '1', '1', '1', '0', '0', 'A', null);
+INSERT INTO `team_info` VALUES ('2', '책들아 놀자 2팀', '놀자 2학교', '20', '0', '0', '0', '1', '0', '0', '0', 'B', null);
+INSERT INTO `team_info` VALUES ('3', '책들아 놀자 3팀 : 아자 아자 화이팅!!', '놀자 3학교', '30', '0', '0', '1', '0', '0', '0', '0', 'C', null);
+INSERT INTO `team_info` VALUES ('4', '책들아 놀자 4팀 : 아자 아자 화이팅!!', '놀자 4학교', '40', '0', '0', '1', '0', '0', '0', '0', 'D', null);
+INSERT INTO `team_info` VALUES ('5', '책들아 놀자 5팀 : 아자 아자 화이팅!!', '놀자 5학교', '50', '0', '0', '0', '1', '0', '0', '0', 'A', null);
+INSERT INTO `team_info` VALUES ('6', '책들아 놀자 6팀 : 아자 아자 화이팅!!', '놀자 6학교', '60', '0', '0', '1', '0', '0', '0', '0', 'B', null);
+INSERT INTO `team_info` VALUES ('7', '책들아 놀자 7팀 : 아자 아자 화이팅!!', '놀자 7학교', '70', '0', '1', '1', '1', '1', '0', '0', 'C', null);
+INSERT INTO `team_info` VALUES ('8', '책들아 놀자 8팀 : 아자 아자 화이팅!!', '놀자 8학교', '80', '0', '0', '0', '1', '0', '0', '0', 'D', null);
+INSERT INTO `team_info` VALUES ('9', '책들아 놀자 9팀 : 아자 아자 화이팅!!', '놀자 9학교', '90', '0', '0', '0', '1', '0', '0', '0', 'A', null);
+INSERT INTO `team_info` VALUES ('10', '책들아 놀자 10팀 : 아자 아자 화이팅!!', '놀자 10학교', '100', '0', '0', '0', '1', '1', '0', '0', 'B', null);
+INSERT INTO `team_info` VALUES ('11', '책들아 놀자 11팀 : 아자 아자 화이팅!!', '놀자 11학교', '110', '0', '0', '0', '1', '0', '0', '0', 'C', null);
+INSERT INTO `team_info` VALUES ('12', '책들아 놀자 12팀 : 아자 아자 화이팅!!', '놀자 12학교', '120', '0', '0', '0', '1', '0', '0', '0', 'D', null);
+INSERT INTO `team_info` VALUES ('13', '책들아 놀자 13팀 : 아자 아자 화이팅!!', '놀자 13학교', '130', '0', '0', '0', '1', '0', '0', '0', 'A', null);
+INSERT INTO `team_info` VALUES ('14', '책들아 놀자 14팀 : 아자 아자 화이팅!!', '놀자 14학교', '140', '0', '0', '0', '1', '0', '0', '0', 'B', null);
+INSERT INTO `team_info` VALUES ('15', '책들아 놀자 15팀 : 아자 아자 화이팅!!', '놀자 15학교', '150', '0', '0', '0', '1', '0', '0', '0', 'C', null);
+INSERT INTO `team_info` VALUES ('16', '책들아 놀자 16팀 : 아자 아자 화이팅!!', '놀자 16학교', '160', '0', '0', '0', '1', '0', '0', '0', 'D', null);
+INSERT INTO `team_info` VALUES ('17', '책들아 놀자 17팀 : 아자 아자 화이팅!!', '놀자 17학교', '170', '0', '0', '0', '1', '0', '0', '0', 'A', null);
+INSERT INTO `team_info` VALUES ('18', '책들아 놀자 18팀 : 아자 아자 화이팅!!', '놀자 18학교', '180', '0', '0', '0', '1', '0', '0', '0', 'B', '책들아 놀자 18팀 : 아자 아자 화이팅!!1');
+INSERT INTO `team_info` VALUES ('19', '책들아 놀자 19팀 : 아자 아자 화이팅!!', '놀자 19학교', '190', '0', '0', '0', '1', '0', '0', '0', 'C', null);
+INSERT INTO `team_info` VALUES ('20', '책들아 놀자 20팀 : 아자 아자 화이팅!!', '놀자 20학교', '200', '0', '0', '0', '1', '0', '0', '0', 'D', null);
 
 -- ----------------------------
 -- Table structure for working_memory
@@ -239,7 +244,7 @@ CREATE TABLE `working_memory` (
   `XY_20` varchar(5) DEFAULT NULL,
   `WORKING_FILE` varchar(1024) DEFAULT NULL,
   `WORKING_IMAGE` longblob,
-  `WORKING_DT` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `WORKING_DT` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`TEAM_CODE`,`WORKING_DT`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='워킹메모리 팀별(A,B,C,D 4개팀) 제출 답안';
 
