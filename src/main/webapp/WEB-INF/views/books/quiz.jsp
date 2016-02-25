@@ -430,22 +430,22 @@
                 <!-- 독서퀴즈 찬스카드 부분 -->
                 <div class='tit_div4'>
                     <span><a id="quizChance1" name="quizChance1" href="#"><img id="chance1"
-                                                                               src="${pageContext.request.contextPath}/resources/images/play_use.png"
+                                                                               src="${pageContext.request.contextPath}/resources/images/dbpoint.png"
                                                                                style="border:none"></a></span>
                     <span><a id="quizChance2" name="quizChance2" href="#"><img id="chance2"
-                                                                               src="${pageContext.request.contextPath}/resources/images/play_use.png"
+                                                                               src="${pageContext.request.contextPath}/resources/images/first.png"
                                                                                style="border:none"></a></span>
                     <span><a id="quizChance3" name="quizChance3" href="#"><img id="chance3"
-                                                                               src="${pageContext.request.contextPath}/resources/images/play_use.png"
+                                                                               src="${pageContext.request.contextPath}/resources/images/dbchance.png"
                                                                                style="border:none"></a></span>
                     <span><a id="quizChance4" name="quizChance4" href="#"><img id="chance4"
-                                                                               src="${pageContext.request.contextPath}/resources/images/play_use.png"
+                                                                               src="${pageContext.request.contextPath}/resources/images/play.png"
                                                                                style="border:none"></a></span>
                     <span><a id="quizChance5" name="quizChance5" href="#"><img id="chance5"
-                                                                               src="${pageContext.request.contextPath}/resources/images/play_use.png"
+                                                                               src="${pageContext.request.contextPath}/resources/images/play.png"
                                                                                style="border:none"></a></span>
                     <span><a id="quizChance6" name="quizChance6" href="#"><img id="chance6"
-                                                                               src="${pageContext.request.contextPath}/resources/images/play_use.png"
+                                                                               src="${pageContext.request.contextPath}/resources/images/play.png"
                                                                                style="border:none"></a></span>
                 </div>
                 <!-- 독서퀴즈 찬스카드 부분 -->
