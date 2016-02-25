@@ -71,6 +71,19 @@
         $('#teamInfoCookieCreate').click(function () {
             //alert($("#schoolName").val());
             var formData = {teamCode: $("#teamCode").val(), teamSeq: $("#schoolName").val()};
+            alert(formData.teamSeq);
+            $.removeCookie('SEQ');
+            $.removeCookie('NAME');
+            $.removeCookie('SCHOOL_NAME');
+            $.removeCookie('BASE_SCORE');
+            $.removeCookie('RANK_SCORE');
+            $.removeCookie('CHANCE1');
+            $.removeCookie('CHANCE2');
+            $.removeCookie('CHANCE3');
+            $.removeCookie('CHANCE4');
+            $.removeCookie('CHANCE5');
+            $.removeCookie('TEAM_CODE');
+            $.removeCookie('TEAM_INFO');
             $.ajax({
                 url: "${pageContext.request.contextPath}/operator/team/info/json",
                 type: "GET",

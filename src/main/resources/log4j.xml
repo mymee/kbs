@@ -1,122 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE log4j:configuration PUBLIC "-//LOG4J//DTD LOG4J//EN" "log4j.dtd">
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTDLOG4J1.2//EN" "log4j.dtd">
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
-	<!-- Default -->
-	<!-- Console view -->
-	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+
+	<!--Appenders-->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out"/>
 		<layout class="org.apache.log4j.PatternLayout">
-			<param name="ConversionPattern" value="%d [%t] %p - %C{1}.%M(%L) | %m%n" />
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] [%p] [%c] [%L] %m %n"/>
 		</layout>
 	</appender>
 
-	<!--<appender name="APPLICATION" class="org.apache.log4j.DailyRollingFileAppender">-->
-		<!--<param name="file" value="/data/logs/application.log" />-->
-		<!--<param name="Append" value="true" />-->
-		<!--<param name="Encoding" value="UTF-8" />-->
-		<!--<param name="DatePattern" value="'.'yyyy-MM-dd" />-->
+	<!--
+        @date 160125
+        @author mg.yoon
+        @content log4J:sql Log Print
+     -->
+	<!-- Appenders -->
+	<!--<appender name="console" class="org.apache.log4j.ConsoleAppender">-->
 		<!--<layout class="org.apache.log4j.PatternLayout">-->
-			<!--<param name="ConversionPattern" value="%5p [%d{HH:mm:ss}] %m%n" />-->
+			<!--<param name="ConversionPattern" value="%d %5p [%c] %m%n" />-->
 		<!--</layout>-->
 	<!--</appender>-->
 
-	<!--<appender name="SQL" class="org.apache.log4j.DailyRollingFileAppender">-->
-		<!--<param name="file" value="/data/logs/sql.log" />-->
-		<!--<param name="Append" value="true" />-->
-		<!--<param name="Encoding" value="UTF-8" />-->
-		<!--<param name="DatePattern" value="'.'yyyy-MM-dd" />-->
+	<!--<appender name="console-infolog" class="org.apache.log4j.ConsoleAppender">-->
 		<!--<layout class="org.apache.log4j.PatternLayout">-->
-			<!--<param name="ConversionPattern" value="%5p [%d{HH:mm:ss}] %m%n" />-->
+			<!--<param name="ConversionPattern" value="%d %5p %m%n" />-->
 		<!--</layout>-->
 	<!--</appender>-->
 
-	<category name="org.kbs.playto.books" additivity="false">
-		<priority value="info" />
-		<appender-ref ref="CONSOLE" />
-	</category>
-
-	<category name="org.apache" additivity="false">
-		<priority value="info" />
-		<appender-ref ref="CONSOLE" />
-	</category>
-	
-	<category name="org.codehaus" additivity="false">
-		<priority value="info" />
-		<appender-ref ref="CONSOLE" />
-	</category>	
- 
-	<category name="org.springframework" additivity="false">
-		<priority value="info" />
-		<appender-ref ref="CONSOLE" />
-	</category>
-
+	<!-- Application Loggers -->
 	<category name="com.mybatis" additivity="false">
 		<priority value="info" />
-		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="console" />
 	</category>
 
 	<category name="java.sql" additivity="false">
 		<priority value="info" />
-		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="console" />
 	</category>
-	
-    <!-- log SQL (pre-execution) plus exceptions caused by SQL -->
+
+	<!-- log SQL (pre-execution) plus exceptions caused by SQL -->
 	<category name="jdbc.sqlonly" additivity="false">
 		<priority value="info" />
-		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="console" />
 	</category>
 
 	<!-- log SQL with timing information, post execution -->
 	<category name="jdbc.sqltiming" additivity="false">
 		<priority value="warn" />
-		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="console" />
 	</category>
 
 	<!-- only use the two logs below to trace ALL JDBC information,
-		NOTE:  This can be very voluminous!  -->
+        NOTE:  This can be very voluminous!  -->
 	<!-- log all jdbc calls except ResultSet calls -->
 	<category name="jdbc.audit" additivity="false">
 		<priority value="warn" />
-		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="console" />
 	</category>
 
-    <category name="jdbc.resultsettable" additivity="false">
+	<category name="jdbc.resultsettable" additivity="false">
 		<priority value="info" />
-		<appender-ref ref="CONSOLE" />
-    </category>
-    
+		<appender-ref ref="console" />
+	</category>
+
 	<!-- log the jdbc ResultSet calls -->
 	<category name="jdbc.resultset" additivity="false">
 		<priority value="warn" />
-		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="console" />
 	</category>
 
-	<!-- this log is for internal debugging of log4jdbc, itself -->
-	<!-- debug logging for log4jdbc itself -->
-	<category name="log4jdbc.debug" additivity="false">
-		<priority value="warn" />
-		<appender-ref ref="CONSOLE" />
+	<!--ApplicationLoggers-->
+	<category name="org.kbs.playto.books.controller">
+		<priority value="debug" />
+		<appender-ref ref="console" />
 	</category>
-	
-	<!-- ehCache logging -->
-	<category name="net.sf.ehcache" additivity="false">
+
+	<!--3rdpartyLoggers-->
+	<category name="org.springframework.core">
 		<priority value="info" />
-		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="console" />
 	</category>
-	<category name="net.sf.ehcache.config" additivity="false">
+
+	<category name="org.springframework.beans">
 		<priority value="info" />
-		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="console" />
 	</category>
-	<category name="net.sf.ehcache.distribution" additivity="false">
+
+	<category name="org.springframework.context">
 		<priority value="info" />
-		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="console" />
 	</category>
-	<category name="net.sf.ehcache.code" additivity="false">
+
+	<category name="org.springframework.web">
 		<priority value="info" />
-		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="console" />
 	</category>
-	
+
+
+	<!-- Root Logger -->
 	<root>
 		<priority value="info"/>
-		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="console" />
 	</root>
+
+
 </log4j:configuration>

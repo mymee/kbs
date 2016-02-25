@@ -80,9 +80,9 @@ public class OperatorController {
                     teamInfoVO.setNumber("teamCode", c.getValue());
 
                 }
-
             }
         }
+        logger.info("TEAM_CODE:" + request.getParameter("teamSeq") );
         //return teamInfoDAO.selectTeamInfo(teamInfoVO);
         return teamInfoDAO.selectTeamQuizProcessInfo(teamInfoVO);
     }

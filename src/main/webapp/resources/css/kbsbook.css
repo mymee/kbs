@@ -58,6 +58,7 @@ body {
 	height: 861px;
 	width: 114px;
 	font-size: 60px;
+	text-align: center;
 }
 
 .tit_div3 {
@@ -94,7 +95,7 @@ body {
 
 .mem_no {
 	position: absolute;
-	left: -325px;
+	left: -290px;
 	margin-left: 450px;
 	top: 66px;
 	z-index: 99;

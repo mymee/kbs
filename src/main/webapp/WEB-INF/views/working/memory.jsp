@@ -128,7 +128,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $("#teamCode").val($.cookie("TEAM_CODE"));
-
+            $("#teamCodeText").html($.cookie("TEAM_CODE")+"조");
             if($("#teamCode").val() == ""){
                 dalert.alert("팀/조 선택을 다시 해 주세요","선택","");
                 return false;
@@ -231,7 +231,8 @@
         <td>
             <!-- 메모리퀴즈 조이름 부분 -->
             <div class='mem_no'>
-                <div class='working_team'>
+                <h1 id="teamCodeText">팀조</h1>
+                <div class='working_team' style="display: none">
                     <select id="teamCode" name="teamCode" onFocus='this.initialSelect = this.selectedIndex;'
                             onChange='this.selectedIndex = this.initialSelect;'
                             style="width: 180px; height: 85px; font-size: 80px; opacity:0.5;">
