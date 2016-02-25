@@ -89,7 +89,7 @@
             });
             setInterval(function () {
                 $("#teamInfoRefresh").last().trigger("click");
-            }, 50000);
+            }, 5000);
 
             $('#quizNextButton').click(function () {
 
